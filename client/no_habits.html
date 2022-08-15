@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis&display=swap"
+      rel="stylesheet"
+    />
+    <!-- font awesome (icons) -->
+    <script
+      src="https://kit.fontawesome.com/bfcbb8f6a3.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <!-- custom css links -->
+    <link rel="stylesheet" href="./static/styles/universal.css" />
+    <link rel="stylesheet" href="./static/styles/no_habits.css" />
+    <!-- custom js links -->
+    <script src="./static/scripts/universal.js" defer></script>
+    <script src="./static/scripts/navBar.js" defer></script>
+    <title>Habit Tracker</title>
+  </head>
+  <body>
+    <!-- nav for smaller screens -->
+    <nav id="navBarSmallBg">
+      <i class="fa-solid fa-bars" id="bars"></i>
+      <ul id="navLinksSmall">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./pages/login">Login</a></li>
+        <li><a href="./pages/register">Register</a></li>
+      </ul>
+    </nav>
+
+    <!-- nav for larger screens -->
+    <nav id="navBarLargeBg">
+      <a href="./index.html">Home</a>
+      <a href="./pages/login">Login</a>
+      <a href="./pages/register">Register</a>
+    </nav>
+
+    <main id="mainBgHome">
+      <header id="homeTitle">
+        <h1>You have no habits</h1>
+      </header>
+
+      <aside id="homeBtn">
+        <a href="../client/habits_create.html">Create Habit</a>
+      </aside>
+    </main>
+
+    <footer id="footerBg">
+      <i class="fa-solid fa-user"></i>
+      <i class="fa-solid fa-calendar-days"></i>
+      <i class="fa-solid fa-sun"></i>
+    </footer>
+  </body>
+</html>
