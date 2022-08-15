@@ -1,33 +1,41 @@
-version: '3'
-name: "habit-tracker"
 services:
-  db:
-    container_name: trackcer-db
-    image: postgres:latest
-    volumes:
-      - "dbdata:/var/lib/postgresql/data"
-      - "./db:/docker-entrypoint-initdb.d/:ro"
-    environment: 
-      - POSTGRES_PASSWORD=password
-  api:
-    container_name: tracker-api
-    image: node:slim
+  client:
+    container_name: debug_dev_client
+    build: ./client
+    image: debug_client
+    ports: 
+      - 8080:8080
+    working_dir: /code
     volumes:
       - type: bind
-        source: ./api
+        source: ./client
         target: /code
-    working_dir: /code
+    command: [ "http-server" ]
+  api:
+    container_name: debug_dev_api
     ports: 
       - 3000:3000
     environment: 
-      - PORT=3000
+      - PGUSER=futureproof
       - PGHOST=db
-      - PGUSER=postgres
-      - PGDATABASE=postgres
-      - PGPASSWORD=password
+      - PGPASSWORD=librarypass
+      - PGDATABASE=library
       - PGPORT=5432
+      - NODE_ENV=development
     depends_on:
       - db
-    command: bash -c "npm install && npm run start"
+    command: bash -c "npm install && npm run seedDev && npm run dev"
+
+  db:
+    container_name: debug_dev_db
+    volumes:
+      - "dbdata:/var/lib/postgresql/data"
+    environment: 
+      - POSTGRES_DB=library
+      - POSTGRES_USER=futureproof
+      - POSTGRES_PASSWORD=librarypass
 volumes:
   dbdata:
+networks: 
+  default:
+    name: debug_api
