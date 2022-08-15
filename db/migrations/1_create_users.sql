@@ -6,3 +6,15 @@ CREATE TABLE users (
     email varchar(20) NOT NULL,
     password varchar(70) NOT NULL
 );
+
+
+DROP TABLE IF EXISTS habits;
+
+CREATE TABLE habits (
+    habit_id serial PRIMARY KEY,
+    habitName varchar(20) NOT NULL,
+    frequency varchar(20),
+    streak int,
+    lastComplete date,
+    user_id int
+);
