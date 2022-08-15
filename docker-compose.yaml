@@ -9,8 +9,8 @@ services:
         target: /code
 
   db:
-    image: postgres:latest
+    image: postgres:12.4
     environment: 
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=futureproof
     volumes:
       - "./db/migrations:/docker-entrypoint-initdb.d/:ro"
