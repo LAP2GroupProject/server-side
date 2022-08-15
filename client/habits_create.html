@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis&display=swap"
+      rel="stylesheet"
+    />
+    <!-- font awesome (icons) -->
+    <script
+      src="https://kit.fontawesome.com/bfcbb8f6a3.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <!-- custom css links -->
+    <link rel="stylesheet" href="../static/styles/universal.css" />
+    <link rel="stylesheet" href="../static/styles/arrow_left.css" />
+    <link rel="stylesheet" href="../static/styles/habits_create.css" />
+    <!-- custom js links -->
+    <script src="../static/scripts/universal.js" defer></script>
+    <script src="../static/scripts/navBar.js" defer></script>
+    <title>Habit | Create</title>
+  </head>
+  <body>
+    <!-- nav for smaller screens -->
+    <nav id="navBarSmallBg">
+      <i class="fa-solid fa-bars" id="bars"></i>
+      <ul id="navLinksSmall">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="./login.html">Login</a></li>
+        <li><a href="./register.html">Register</a></li>
+      </ul>
+    </nav>
+
+    <!-- nav for larger screens -->
+    <nav id="navBarLargeBg">
+      <a href="../index.html">Home</a>
+      <a href="./login.html">Login</a>
+      <a href="./register.html">Register</a>
+    </nav>
+
+    <main id="mainBgHabitCreate">
+      <aside id="leftArrow">
+        <i class="fa-solid fa-circle-left"></i>
+      </aside>
+
+      <section id="habitCreateContainer">
+        <h1>Selected habit: <span>[Sleep]</span></h1>
+        <h2>Choose frequency</h2>
+        <button>Daily</button>
+        <button>Weekly</button>
+      </section>
+    </main>
+
+    <!-- footer -->
+    <footer id="footerBg">
+      <i class="fa-solid fa-user"></i>
+      <i class="fa-solid fa-calendar-days"></i>
+      <i class="fa-solid fa-sun"></i>
+    </footer>
+  </body>
+</html>
