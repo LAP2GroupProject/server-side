@@ -1,0 +1,28 @@
+const db = require ('../dbConfig');
+
+class User {
+
+    constructor(data){
+        this.id = data.id;
+        this.name = data.name;
+        this.email = data.email;
+        this.password=data.password;
+    }
+
+
+    // get all users
+    static get allUsers() {
+        return new Promise (async (resolve, reject) => {
+            try {
+                const userData = await db.query(`SELECT * FROM users;`)
+                const users = userData.rows.map(u => new User(u))
+                resolve(users);
+                
+            } catch (err) {
+                reject("Error retrieving users")
+            }
+        })
+    }
+   
+}
+
