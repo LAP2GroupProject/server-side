@@ -1,0 +1,45 @@
+/****************************************************** habitCreateContainer */
+#habitCreateContainer {
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  justify-items: center;
+}
+
+#habitCreateContainer h1,
+h2 {
+  margin-bottom: 2rem;
+}
+
+#habitCreateContainer button {
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  background-color: #85f4ff;
+  border: none;
+  padding: 1rem 2rem;
+  display: inline-block;
+  font-size: 1.2rem;
+}
+
+#habitCreateContainer button:hover {
+  background-color: #42c2ff;
+}
+
+@media (min-width: 576px) {
+  #habitCreateContainer h1 {
+    font-size: 3rem;
+  }
+
+  #habitCreateContainer span {
+    color: #42c2ff;
+  }
+
+  #habitCreateContainer h2 {
+    font-size: 2rem;
+  }
+
+  #habitCreateContainer button {
+    font-size: 2rem;
+  }
+}
