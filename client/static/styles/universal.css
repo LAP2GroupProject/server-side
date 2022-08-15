@@ -1,0 +1,135 @@
+/****************************************************** custom defaults */
+/* removes auto blue highlighting */
+::selection {
+  color: none;
+  background: none;
+}
+/* For Mozilla Firefox */
+::-moz-selection {
+  color: none;
+  background: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Dosis', sans-serif;
+  color: #000;
+}
+
+body {
+  text-align: center;
+  cursor: default;
+  background-color: #fff;
+  /* for footer */
+  position: relative;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+/****************************************************** nav (small) */
+#navBarLargeBg {
+  display: none;
+}
+
+#navBarSmallBg {
+  text-align: left;
+  font-size: 2rem;
+  background-color: #effffd;
+  padding: 0.7rem;
+  width: 100%;
+  height: 4rem;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+}
+
+.fa-solid.fa-bars {
+  cursor: pointer;
+}
+
+.fa-solid.fa-bars:hover {
+  color: #42c2ff;
+}
+
+#navLinksSmall {
+  display: none;
+  grid-template-columns: auto;
+  justify-content: end;
+  justify-items: end;
+  right: 1rem;
+  top: 1rem;
+  position: absolute;
+}
+
+#navLinksSmall a:hover {
+  color: #42c2ff;
+  font-weight: 900;
+}
+
+@media (min-width: 992px) {
+  /****************************************************** nav (large) */
+  #navBarSmallBg {
+    display: none;
+  }
+
+  #navBarLargeBg {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    font-size: 2rem;
+    background-color: #effffd;
+    padding: 0.7rem;
+    width: 100%;
+    height: 4rem;
+    align-content: center;
+    justify-content: end;
+    grid-gap: 4rem;
+  }
+
+  #navBarLargeBg a {
+    font-size: 2rem;
+  }
+
+  #navBarLargeBg a:hover {
+    color: #42c2ff;
+    font-weight: 900;
+  }
+}
+
+/****************************************************** footer */
+#footerBg {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  background-color: #effffd;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-content: center;
+  justify-content: space-evenly;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.fa-solid.fa-user:hover,
+.fa-solid.fa-calendar-days:hover,
+.fa-solid.fa-sun:hover {
+  color: #42c2ff;
+}
+
+@media (min-width: 992px) {
+  .fa-solid.fa-user,
+  .fa-solid.fa-calendar-days,
+  .fa-solid.fa-sun {
+    font-size: 2rem;
+  }
+}
