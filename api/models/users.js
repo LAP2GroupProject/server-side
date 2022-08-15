@@ -1,4 +1,4 @@
-const db = require ('../dbConfig');
+const db = require('../dbConfig/init');
 
 class User {
 
@@ -11,10 +11,10 @@ class User {
 
 
     // get all users
-    static get allUsers() {
+    static get all() {
         return new Promise (async (resolve, reject) => {
             try {
-                const userData = await db.query(`SELECT * FROM users;`)
+                const userData = await db.query('select * from "users";')
                 const users = userData.rows.map(u => new User(u))
                 resolve(users);
                 
@@ -26,3 +26,5 @@ class User {
    
 }
 
+
+module.exports=User;
