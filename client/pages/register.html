@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="../static/styles/styles.css" />
     <!-- custom js -->
     <script src="../static/scripts/scripts.js" defer></script>
+    <script src="./static/scripts/loginOrRegister.js"></script>
     <title>Register</title>
   </head>
   <body>
@@ -55,18 +56,18 @@
     <div class="container">
       <div class="form-container">
         <h2>Join Habit Tracker today.</h2>
-        <form id="login-register">
+        <form id="register">
           <div class="username-div">
-            <input type="text" placeholder="Name" />
+            <input type="text" placeholder="Name" id="name"/>
           </div>
           <div class="password-div">
-            <input type="text" placeholder="Username" />
+            <input type="text" placeholder="Username" id="username"/>
           </div>
           <div class="password-div">
-            <input type="password" placeholder="Password" />
+            <input type="password" placeholder="Password" id="password"/>
           </div>
           <div class="password-div">
-            <input type="email" placeholder="Email" />
+            <input type="email" placeholder="Email" id="email"/>
           </div>
           <button type="submit">Register</button>
         </form>

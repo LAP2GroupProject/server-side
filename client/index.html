@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="./static/styles/styles.css" />
     <!-- custom js -->
     <script src="./static/scripts/scripts.js" defer></script>
+    <script src="./static/scripts/loginOrRegister.js"></script>
     <title>Login</title>
   </head>
   <body>
@@ -55,14 +56,14 @@
     <main class="container">
       <div class="form-container">
         <h2>Habit Tracker</h2>
-        <form id="login-register">
+        <form id="login">
           <div class="username-div">
             <i class="fas fa-sign-in-alt"></i
-            ><input type="text" placeholder="Username" />
+            ><input type="text" placeholder="Username" id="username"/>
           </div>
           <div class="password-div">
             <i class="fa-solid fa-lock"></i
-            ><input type="password" placeholder="Password" />
+            ><input type="password" placeholder="Password" id="password"/>
           </div>
           <button type="submit">Login</button>
         </form>
