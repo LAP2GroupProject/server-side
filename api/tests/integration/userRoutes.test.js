@@ -29,6 +29,11 @@ describe("user endpoints", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body.books.length).toEqual(1);
     });
+
+    it("Responds to a GET request at / with a 200 status", (done) => {
+      const api = usersController.index;
+      jest.spyOn(User, "all", "get").request(api).get("/").expect(200, done);
+    });
   });
 
   describe("Creating Users", () => {
