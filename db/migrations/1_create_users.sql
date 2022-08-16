@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS users;
 
-CREATE TABLE user_account (
+CREATE TABLE users (
     id serial PRIMARY KEY,
-    username varchar(20) NOT NULL,
+    name varchar(20) NOT NULL,
     email varchar(20) NOT NULL,
     password varchar(70) NOT NULL
 );
