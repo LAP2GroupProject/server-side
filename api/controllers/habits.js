@@ -15,7 +15,6 @@ async function habitIndex (req, res) {
 }
 
 async function create (req, res) {
-    console.log(req.body)
     try {
         const addHabit = await Habit.create(req.body.habit, req.body.frequency, req.body.streak, req.body.user_id);
         res.status(201).json(addHabit);
@@ -25,4 +24,13 @@ async function create (req, res) {
     }
 }
 
-module.exports={habitIndex, create}
+async function getHabits (req, res) {
+    try {
+        const habits = await Habit.allByUserId(parseInt(req.params.id))
+        res.status(200).json(habits)
+    } catch (err) {
+        res.status(404).json({err})
+    }
+}
+
+module.exports={habitIndex, create, getHabits}

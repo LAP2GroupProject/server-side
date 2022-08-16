@@ -10,6 +10,7 @@ const habitsController = require("../controllers/habits");
 
 router.get('/', habitsController.habitIndex);
 router.post('/', habitsController.create);
+router.get('/:id', habitsController.getHabits)
 
 module.exports = router
 

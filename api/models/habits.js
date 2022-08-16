@@ -27,6 +27,19 @@ class Habit {
         })
     }
 
+    static async allByUserId(id) {
+        return new Promise (async (resolve, reject) => {
+            try {
+                const habitData = await db.query('SELECT * FROM habits WHERE user_id = $1;', [ id ])
+                const habits = habitData.rows.map(h => new Habit(h))
+                resolve(habits);
+                
+            } catch (err) {
+                reject("Error retrieving habits")
+            }
+        })
+    }
+
     //create a habit
     static async create(habit, frequency, streak, user_id){
         return new Promise (async (resolve, reject) => {
