@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis&display=swap"
+      rel="stylesheet"
+    />
+    <!-- font awesome -->
+    <script
+      src="https://kit.fontawesome.com/701be9d26f.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <!-- jquery cdn -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+    <!-- custom css -->
+    <link rel="stylesheet" href="../static/styles/styles.css" />
+    <!-- custom js -->
+    <script src="../static/scripts/scripts.js" defer></script>
+    <script src="../static/scripts/habits.js" defer></script>
+    <script src="../static/scripts/requests.js"></script>
+
+    <!-- embedded css styles -->
+    <style>
+      body {
+        padding-top: 14rem;
+      }
+
+      @media (min-width: 992px) {
+        body {
+          padding-top: 12rem;
+        }
+      }
+    </style>
+    <title>Create Habits</title>
+  </head>
+  <body>
+    <!-- nav for smaller screens -->
+    <nav id="fullMobileNavBg">
+      <div id="barIconBg">
+        <i class="fa-solid fa-bars" id="bars"></i>
+      </div>
+      <ul id="mobileNavLinksBg">
+        <li><a href="../index.html">Login</a></li>
+        <li><a href="./register.html">Register</a></li>
+      </ul>
+    </nav>
+
+    <!-- nav for larger screens -->
+    <nav id="navBarLargeBg">
+      <a href="../index.html">Login</a>
+      <a href="./register.html">Register</a>
+    </nav>
+
+    <aside id="leftArrow">
+      <i class="fa-solid fa-circle-left" onclick="history.back()"></i>
+    </aside>
+
+    <main>
+      <!-- ----------------------------------- 'NO HABITS' SECTION ---------------------------------------- -->
+      <section id="noHabitsBg">
+        <h1>You have no habits</h1>
+        <button id="noHabitBtn">Create Habit</button>
+        <!-- <a href="./pages/habits_create.html" id="noHabitBtn">Create Habit</a> -->
+      </section>
+
+      <!-- ----------------------------------- 'SELECT HABITS' SECTION ---------------------------------------- -->
+      <section id="habitsBg" style="display: none;">
+        <h1>Let's get started.</h1>
+        <h2>Choose a habit:</h2>
+
+        <form>
+          <div class="habit-div">
+            <input type="button" value="Sleep" class="selectedHabit"/>
+          </div>
+          <div class="habit-div">
+            <input type="button" value="Water" class="selectedHabit"/>
+          </div>
+          <div class="habit-div">
+            <input type="button" value="Exercise" class="selectedHabit"/>
+          </div>
+        </form>
+      </section>
+
+      <!-- ----------------------------------- 'SELECT SLEEP FREQUENCY' SECTION ---------------------------------------- -->
+      <section id="habitSleepContainer" style="display: none;">
+        <h1>Selected habit: <span>[Sleep]</span></h1>
+        <h2>How many hours do you want to sleep every day?</h2>
+
+        <div class="username-div">
+          <input type="number" name="hours"  id="sleepInput"/>
+          <input type="button" value="Next" id="sleep"/>
+        </div>
+      </section>
+
+      <!-- ----------------------------------- 'SELECT WATER FREQUENCY' SECTION ---------------------------------------- -->
+      <section id="habitWaterContainer" style="display: none;">
+        <h1>Selected habit: <span>[Water]</span></h1>
+        <h2>How much water (in litres) do you want to drink every day?</h2>
+
+        <div class="username-div">
+          <input type="number" name="hours"  id="waterInput"/>
+          <input type="button" value="Next" id="water"/>
+        </div>
+      </section>
+
+       <!-- ----------------------------------- 'SELECT EXERCISE FREQUENCY' SECTION ---------------------------------------- -->
+       <section id="habitExerciseContainer" style="display: none;">
+        <h1>Selected habit: <span>[Exercise]</span></h1>
+        <h2>How many days a week do you want to exercise?</h2>
+
+        <div class="username-div">
+          <input type="number" name="hours"  id="exerciseInput"/>
+          <input type="button" value="Next" id="exercise"/>
+        </div>
+      </section>
+
+    
+
+      <!-- ----------------------------------- 'DISPLAY HABIT & FREQUENCY' SECTION ---------------------------------------- -->
+      <section id="displayHabitAndFrequencyBg" style="display: none;">
+        <h1>Selected habit: <span id="overviewHabit"></span></h1>
+        <h2>Selected frequency: <span id="overviewFrequency"></span></h2>
+
+        <!-- <a href="./user_habit.html">Submit</a> -->
+        <!-- <form id="habitForm" style="display: none;">
+          <input id="habitInput" type="hidden" value="">
+          <input id="habitFrequency" type="hidden" value="">
+        </form>
+        <button id="submitHabit" onclick="post">Submit</button> -->
+        <form id="habitForm">
+          <input id="habitInput" type="hidden" value="" name="habit">
+          <input id="habitFrequency" type="hidden" value="" name="frequency">
+          <button id="submitHabit">Submit</button>
+        </form>
+        
+      </section>
+
+     
+    
+
+    </main>
+
+    <footer id="footerBg">
+      <a href="./user_habit.html"><i class="fa-solid fa-user"></i></a>
+      <a href="./user_habit_completed.html"
+        ><i class="fa-solid fa-calendar-days"></i
+      ></a>
+      <a href="./create_habit.html"><i class="fa-solid fa-sun"></i></a>
+    </footer>
+  </body>
+</html>

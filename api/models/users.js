@@ -67,23 +67,6 @@ class User {
             }
         })
     }
-
-    // static async register(name, email, password) {
-    //     return new Promise (async (resolve, reject) => {
-    //         try {               
-               
-    //            let postData = await db.query(`INSERT INTO users (name,email, password) VALUES ($1, $2, $3) RETURNING *;`, [ name, email, hash ]);
-
-    //             let addUser = new User(postData.rows[0]);
-    //             resolve (addUser);
-    //         } catch(err){
-    //             reject(`User could not be created.`)
-    //         }
-    //     })
-    // }
-
-   
 }
-
 
 module.exports = User;

@@ -22,6 +22,14 @@ async function show (req, res) {
     }
 }
 
+async function create (req, res) {
+    try {
+        const user = await User.create(req.body.name, req.body.email, req.body.password);
+        res.status(201).json(user);
+    
+    } catch (err) {
+        res.status(422).json({err})
+    }
+}
 
-
-module.exports={index, show}
+module.exports={index,create}

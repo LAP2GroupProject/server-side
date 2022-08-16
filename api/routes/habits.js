@@ -7,6 +7,8 @@ const habitsController = require("../controllers/habits");
 // router.post('/', habitsController.create);
 // router.patch('/:id', habitsController.patch)
 
-// router.delete('/:id', habitsController.destroy);
+router.get('/', habitsController.habitIndex);
+router.post('/', habitsController.create);
+router.get('/:id', habitsController.getHabits)
 
-module.exports = router;
+module.exports = router
