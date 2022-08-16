@@ -6,10 +6,10 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/users");
 
 async function createToken(userData) {
-
+    console.log(process.env.SECRET_PASSWORD)
     const token = await jwt.sign({
-        username: userData["username"]
-    }, "" + process.env.SECRET_PASSWORD, {expiresIn: 60 * 60})
+        username: userData["name"]
+    }, process.env["SECRET_PASSWORD"], {expiresIn: 60 * 60})
 
     return token;
 }
@@ -40,7 +40,7 @@ async function login (req, res) {
         console.log(err)
 
         res.status(401).json({
-            success: false,
+            success: "false",
             error: 'Error. Unable to authenticate user.'
         })
     }

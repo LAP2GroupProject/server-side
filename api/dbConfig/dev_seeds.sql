@@ -1,6 +1,6 @@
 INSERT INTO users (name,email,password) 
 VALUES
-    ('admin', 'admin@admin.com', '$2b$12$G9FANDdombBeZlFV.Sh6muoxXpbexC2I6DL.QNeh5AEY8LlxADpMm' ),       --passwords need to be hashed
+    ('admin', 'admin@admin.com', '$2b$10$NHvUyBBXwXYjbUI4Qi931.BKJmjBXz2tPl0VUAo7QmxsTYbSl93d2' ),       --passwords need to be hashed
     ('krish','ksirhs8@gmail.com', 'passkris'),
     ('nabin', 'nabin7@yahoo.com', 'passnabin');
 
