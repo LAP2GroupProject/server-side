@@ -1,3 +1,5 @@
+const app = require("../../server.js");
+
 describe("user endpoints", () => {
   let api;
   beforeEach(async () => {
@@ -15,15 +17,63 @@ describe("user endpoints", () => {
     api.close(done);
   });
 
-  it("should return a list of all users in database", async () => {
-    const res = await request(api).get("/users");
-    expect(res.statusCode).toEqual(200);
-    expect(res.body.length).toEqual(2);
+  describe("Returning Users", () => {
+    it("should return a list of all users in database", async () => {
+      const res = await request(api).get("/users");
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.length).toEqual(2);
+    });
+
+    it("should return a list of habits by the first user", async () => {
+      const res = await request(api).get("/user/1");
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.books.length).toEqual(1);
+    });
   });
 
-  it("should return a list of habits by a specific user", async () => {
-    const res = await request(api).get("/user/1");
-    expect(res.statusCode).toEqual(200);
-    expect(res.body.books.length).toEqual(2);
+  describe("Creating Users", () => {
+    it("should create a new user", async () => {
+      const res = await request(api).post("/users").send({
+        id: 3,
+        name: "Test Name",
+        email: "testname@testing.com",
+        password: "testing"
+      });
+      expect(res.statusCode).toEqual(201);
+      expect(res.body).toHaveProperty("id");
+
+      const userRes = await request(api).get("/users");
+      expect(userRes.body.books.length).toEqual(3);
+    });
+  });
+
+  describe("Creating Habits", () => {
+    it("should create a new habit by a new user", async () => {
+      const res = await request(api).post("/users").send({
+        id: 4,
+        habit: "Test Habit for New user",
+        userName: "New Test User"
+      });
+      expect(res.statusCode).toEqual(201);
+      expect(res.body).toHaveProperty("id");
+      // console.log(res);
+      const authRes = await request(api).get("/user/4");
+      // console.log(authRes);
+      expect(authRes.statusCode).toEqual(200);
+      expect(authRes.body.books.length).toEqual(4);
+    });
+
+    it("should create a new habit by an existing user", async () => {
+      const res = await request(api).post("/users").send({
+        id: 5,
+        habit: "New Habit",
+        userName: "Test User 5"
+      });
+      expect(res.statusCode).toEqual(201);
+      expect(res.body).toHaveProperty("id");
+
+      const userRes = await request(api).get("/users/5");
+      expect(userRes.body.books.length).toEqual(5);
+    });
   });
 });
