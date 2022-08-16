@@ -9,3 +9,4 @@ router.patch('/:id', habitsController.patch)
 
 router.delete('/:id', habitsController.destroy);
 
+module.exports = router;
