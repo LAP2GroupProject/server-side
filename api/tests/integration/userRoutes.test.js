@@ -51,8 +51,10 @@ describe("user endpoints", () => {
     it("should create a new habit by a new user", async () => {
       const res = await request(api).post("/users").send({
         id: 4,
-        habit: "Test Habit for New user",
-        userName: "New Test User"
+        habitName: "New Habit by New user",
+        userId: 8,
+        frequency: 3,
+        streak: 1
       });
       expect(res.statusCode).toEqual(201);
       expect(res.body).toHaveProperty("id");
@@ -66,8 +68,10 @@ describe("user endpoints", () => {
     it("should create a new habit by an existing user", async () => {
       const res = await request(api).post("/users").send({
         id: 5,
-        habit: "New Habit",
-        userName: "Test User 5"
+        habitName: "New Habit by Existing user",
+        userId: 8,
+        frequency: 3,
+        streak: 1
       });
       expect(res.statusCode).toEqual(201);
       expect(res.body).toHaveProperty("id");
