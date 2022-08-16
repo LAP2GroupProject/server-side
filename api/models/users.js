@@ -1,4 +1,5 @@
 const db = require('../dbConfig/init');
+const bcrypt = require("bcrypt")
 
 class User {
 
@@ -53,16 +54,14 @@ class User {
     static async register(name, email, password) {
         return new Promise (async (resolve, reject) => {
             try {
-
                 const saltRounds = 10;
-                const salt = await bcrypt.genSalt(saltRounds)
+
+                const salt = await bcrypt.genSalt(saltRounds);
                 const hash = await bcrypt.hash(password, salt);
 
-                let result = await db.query(
-                    `INSERT INTO users (name, email, password) VALUES ($1, $2. $3) RETURNING *;`, [name, email, hash]
-                );
-
-                resolve(new User (result.rows[0]));
+                let result = await db.query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`, [name, email, hash]);
+                const user = new User(result.rows[0])
+                resolve(user);
             } catch(err){
                 reject(`User could not be created.`)
             }
@@ -87,4 +86,4 @@ class User {
 }
 
 
-module.exports=User;
+module.exports = User;

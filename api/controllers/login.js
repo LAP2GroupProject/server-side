@@ -46,7 +46,7 @@ async function login (req, res) {
     }
 }
 
-async function register(req,res)  {
+async function register(req, res)  {
     try {
         const user = await User.register(req.body.name, req.body.email, req.body.password);
         res.status(201).json(user);
