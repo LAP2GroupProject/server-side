@@ -14,7 +14,7 @@ class User {
     static get all() {
         return new Promise (async (resolve, reject) => {
             try {
-                const userData = await db.query('select * from "users";')
+                const userData = await db.query('select * from users;')
                 const users = userData.rows.map(u => new User(u))
                 resolve(users);
                 
