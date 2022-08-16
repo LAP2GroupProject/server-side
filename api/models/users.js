@@ -23,6 +23,19 @@ class User {
             }
         })
     }
+
+     //create a new user
+     static create(name, email, password) {
+        return new Promise (async (resolve, reject) => {
+            try {
+                let postData = await db.query(`INSERT INTO users (name,email, password) VALUES ($1, $2, $3) RETURNING *;`, [ name, email, password ]);
+                let addUser = new User(postData.rows[0]);
+                resolve (addUser);
+            } catch (err) {
+                reject('Error creating user');
+            }
+        });
+    }
    
 }
 
