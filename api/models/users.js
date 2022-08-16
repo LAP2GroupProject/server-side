@@ -1,4 +1,5 @@
 const db = require('../dbConfig/init');
+const bcrypt = require("bcrypt")
 
 class User {
 
@@ -6,7 +7,7 @@ class User {
         this.id = data.id;
         this.name = data.name;
         this.email = data.email;
-        this.password=data.password;
+        this.password = data.password;
     }
 
 
@@ -24,50 +25,48 @@ class User {
         })
     }
 
-     //create a new user
-     static create(name, email, password) {
+    static findUserById(id) {
         return new Promise (async (resolve, reject) => {
             try {
-                let postData = await db.query(`INSERT INTO users (name,email, password) VALUES ($1, $2, $3) RETURNING *;`, [ name, email, password ]);
-                let addUser = new User(postData.rows[0]);
-                resolve (addUser);
+                const userData = await db.query(`SELECT * FROM users WHERE id = $1;`, [ id ])
+                const user = new User(userData.rows[0]);
+                resolve(user)
             } catch (err) {
-                reject('Error creating user');
+                console.log(err)
+                reject("That user does not exist.")
             }
-        });
+        })
     }
 
-   /* static create(name){
+    static getOneByUsername(username) {
         return new Promise (async (resolve, reject) => {
             try {
-                let userData = await db.query('INSERT INTO users (name) VALUES ($1) RETURNING *;', [ name ]);
-                let user = new User(userData.rows[0]);
-                resolve (user);
-            } catch (err) {
-                reject('user could not be created');
-            };
-        });
-    };*/
-
-
-    static findOrCreateByName(name){
-        return new Promise (async (resolve, reject) => {
-            try {
-                let user;
-                const userData = await db.query('SELECT * FROM users WHERE name = $1;', [ name ]);
-                if(!userData.rows.length) {
-                    user = await User.create(name);
-                } else {
-                    user = new User(userData.rows[0]);
-                };
+                const userData = await db.query(`SELECT * FROM users WHERE name = $1;`, [username]);
+                const user = new User(userData.rows[0]);
                 resolve(user);
             } catch (err) {
-                reject(err);
-            };
-        });
-    };
-   
+                console.log(err);
+                reject('Unable to locate user. Please try again');
+            }
+        })
+    }
+
+    static async register(name, email, password) {
+        return new Promise (async (resolve, reject) => {
+            try {
+                const saltRounds = 10;
+
+                const salt = await bcrypt.genSalt(saltRounds);
+                const hash = await bcrypt.hash(password, salt);
+
+                let result = await db.query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`, [name, email, hash]);
+                const user = new User(result.rows[0])
+                resolve(user);
+            } catch(err){
+                reject(`User could not be created.`)
+            }
+        })
+    }
 }
 
-
-module.exports=User;
+module.exports = User;

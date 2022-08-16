@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -L index.js",
+    "start": "nodemon index.js",
     "dev": "nodemon -L index.js",
     "seedDev": "node dbConfig/seedDev.js"
   },
@@ -17,6 +17,8 @@
     "fs": "^0.0.1-security",
     "nodemon": "^2.0.19",
     "pg": "^8.7.3",
-    "pool": "^0.4.1"
+    "pool": "^0.4.1",
+    "bcrypt": "*",
+    "jsonwebtoken": "*"
   }
 }
