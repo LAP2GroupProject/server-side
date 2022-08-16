@@ -28,6 +28,7 @@
     <!-- custom js -->
     <script src="../static/scripts/scripts.js" defer></script>
     <script src="../static/scripts/habits.js" defer></script>
+    <script src="../static/scripts/requests.js"></script>
 
     <!-- embedded css styles -->
     <style>
@@ -129,8 +130,15 @@
         <h1>Selected habit: <span id="overviewHabit"></span></h1>
         <h2>Selected frequency: <span id="overviewFrequency"></span></h2>
 
-        <a href="./user_habit.html">Submit</a>
+        <!-- <a href="./user_habit.html">Submit</a> -->
+        <button id="submitHabit">Submit</button>
       </section>
+
+      <form id="habitForm" style="display: none;">
+        <input id="habitInput" type="hidden" value="">
+        <input id="habitFrequency" type="hidden" value="">
+      </form>
+    
 
     </main>
 

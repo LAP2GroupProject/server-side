@@ -6,6 +6,10 @@ let overviewSection = document.getElementById("displayHabitAndFrequencyBg")
 let overviewHabit = document.getElementById("overviewHabit")
 let overviewFrequency = document.getElementById("overviewFrequency")
 
+//// SUBMIT FORM ////
+let submitForm = document.getElementById("habitForm")
+let formSubmitButton = document.getElementById("submitHabit")
+
 //// HIDE CREATE SECTION AND SHOW HABITS SECTION ////
 let noHabitsSection = document.getElementById("noHabitsBg")
 let createHabitButton = document.getElementById("noHabitBtn")
@@ -19,7 +23,6 @@ createHabitButton.addEventListener("click", () => {
 let selectHabitButtons = document.querySelectorAll(".selectedHabit")
 selectHabitButtons.forEach((habit) => {
     habit.addEventListener("click", () => {
-        console.log(habit.value)
         showFrequencySection(habit.value)
     })
 })
@@ -45,7 +48,6 @@ function saveSelected (section, habit) {
     let frequencyButton = document.getElementById(`${habit}`)
 
     frequencyButton.addEventListener("click", () => {
-        console.log(frequencyInput.value)
         showOverview(section, habit, frequencyInput.value)
     })
 }
@@ -55,6 +57,15 @@ function showOverview (section, habit, frequency) {
     overviewSection.style.display = "block"
     overviewHabit.textContent = `[${habit}]`
     overviewFrequency.textContent = `[${frequency}]`
+
+    document.getElementById("habitInput").value = habit
+    document.getElementById("habitFrequency").value = frequency
+
+    submitForm.onsubmit = postHabit
+
+    formSubmitButton.addEventListener("click", () => {
+        submitForm.submit()
+    })
 }
 
     
