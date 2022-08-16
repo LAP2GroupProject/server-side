@@ -46,30 +46,13 @@ async function login (req, res) {
     }
 }
 
-// async function register (req, res) {
-
-//     try {
-//         console.log(req.body);
-//         const user = await User.create(req.body);
-//         res.status(201).json(user);
-
-//     } catch(err) {
-//         console.log(err);
-//         res.status(401).json({
-//             success: false,
-//             error: 'Error. Unable to create user.'
-//         })
-//     }
-// }
-
-
-async function create(req,res)  {
+async function register(req,res)  {
     try {
-        const user = await User.create(req.body.name, req.body.email, req.body.password);
+        const user = await User.register(req.body.name, req.body.email, req.body.password);
         res.status(201).json(user);
     } catch (err) {
         res.status(404).json({err});
     }
 }
 
-module.exports = {login, create}
+module.exports = {login, register}

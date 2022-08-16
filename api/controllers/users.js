@@ -12,8 +12,8 @@ async function index (req, res) {
     }
 }
 
-// Show route and get users by ID
-async function show (req,res) {
+// get user by ID
+async function show (req, res) {
     try {
         const user = await User.findUserById(req.params.id);
         res.status(200).json(user);

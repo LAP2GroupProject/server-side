@@ -24,6 +24,19 @@ class User {
         })
     }
 
+    static findUserById(id) {
+        return new Promise (async (resolve, reject) => {
+            try {
+                const userData = await db.query(`SELECT * FROM users WHERE id = $1;`, [ id ])
+                const user = new User(userData.rows[0]);
+                resolve(user)
+            } catch (err) {
+                console.log(err)
+                reject("That user does not exist.")
+            }
+        })
+    }
+
     static getOneByUsername(username) {
         return new Promise (async (resolve, reject) => {
             try {
@@ -37,7 +50,7 @@ class User {
         })
     }
 
-    static async create(username, email, password) {
+    static async register(name, email, password) {
         return new Promise (async (resolve, reject) => {
             try {
 
@@ -46,7 +59,7 @@ class User {
                 const hash = await bcrypt.hash(password, salt);
 
                 let result = await db.query(
-                    `INSERT INTO users (name, email, password) VALUES ($1, $2. $3) RETURNING *;`, [username, email, hash]
+                    `INSERT INTO users (name, email, password) VALUES ($1, $2. $3) RETURNING *;`, [name, email, hash]
                 );
 
                 resolve(new User (result.rows[0]));
