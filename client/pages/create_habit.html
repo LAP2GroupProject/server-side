@@ -125,19 +125,28 @@
         </div>
       </section>
 
+    
+
       <!-- ----------------------------------- 'DISPLAY HABIT & FREQUENCY' SECTION ---------------------------------------- -->
       <section id="displayHabitAndFrequencyBg" style="display: none;">
         <h1>Selected habit: <span id="overviewHabit"></span></h1>
         <h2>Selected frequency: <span id="overviewFrequency"></span></h2>
 
         <!-- <a href="./user_habit.html">Submit</a> -->
-        <button id="submitHabit">Submit</button>
+        <!-- <form id="habitForm" style="display: none;">
+          <input id="habitInput" type="hidden" value="">
+          <input id="habitFrequency" type="hidden" value="">
+        </form>
+        <button id="submitHabit" onclick="post">Submit</button> -->
+        <form id="habitForm">
+          <input id="habitInput" type="hidden" value="" name="habit">
+          <input id="habitFrequency" type="hidden" value="" name="frequency">
+          <button id="submitHabit">Submit</button>
+        </form>
+        
       </section>
 
-      <form id="habitForm" style="display: none;">
-        <input id="habitInput" type="hidden" value="">
-        <input id="habitFrequency" type="hidden" value="">
-      </form>
+     
     
 
     </main>

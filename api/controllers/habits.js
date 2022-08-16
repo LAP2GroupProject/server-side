@@ -15,6 +15,7 @@ async function habitIndex (req, res) {
 }
 
 async function create (req, res) {
+    console.log(req.body)
     try {
         const addHabit = await Habit.create(req.body.habit, req.body.frequency, req.body.streak, req.body.user_id);
         res.status(201).json(addHabit);
