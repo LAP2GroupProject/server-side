@@ -1,4 +1,12 @@
 const db = require('../dbConfig/init')
 
-const User = require('./users');
 
+class Habit {
+    
+    // constructor(data) {
+    //     this.id = data.id;
+    //     this.title = 
+    // }
+
+
+}
