@@ -7,5 +7,9 @@ router.get('/:id', habitsController.show);
 router.post('/', habitsController.create);
 router.patch('/:id', habitsController.patch)
 
-router.delete('/:id', habitsController.destroy);
+
+router.get('/', habitsController.habitIndex);
+router.post('/', habitsController.create);
+
+
 

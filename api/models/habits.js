@@ -7,7 +7,8 @@ class Habit {
         this.habit = data.habit;
         this.frequency = data.frequency;
         this.streak=data.streak;
-        this.user = { name: data.name, path: `/users/${data.user_id}`};
+       // this.user_id = { name: data.name, path: `/users/${data.user_id}`};
+       this.user_id =data.user_id;
 
     }
 
@@ -25,6 +26,23 @@ class Habit {
             }
         })
     }
+
+    //create a habit
+    static async create(habit, frequency, streak, user_id){
+        return new Promise (async (resolve, reject) => {
+            try {
+                //const { habit, frequency, streak, user} = habitData;
+               // let myUser = await User.findOrCreateByName(user);
+                let result = await db.query(`INSERT INTO habits 
+                                                    (habit, frequency, streak, user_id) 
+                                                    VALUES ($1, $2, $3, $4) 
+                                                    RETURNING id`, [ habit, frequency, streak, user_id ]);
+                resolve (result.rows[0]);
+            } catch (err) {
+                reject('habit could not be created');
+            }
+        });
+    };
    
 }
 
