@@ -26,7 +26,7 @@ async function login (req, res) {
         if (authenticated) {
             res.json({
                 success: true,
-                token: "Bearer" + await createToken(user)
+                token: "Bearer " + await createToken(user)
             })
         } else {
             throw "Credentials do not match"
@@ -41,4 +41,20 @@ async function login (req, res) {
     }
 }
 
-module.exports = login
+async function register (req, res) {
+
+    try {
+        console.log(req.body);
+        const user = await User.create(req.body);
+        res.status(201).json(user);
+
+    } catch(err) {
+        console.log(err);
+        res.status(401).json({
+            success: false,
+            error: 'Error. Unable to create user.'
+        })
+    }
+}
+
+module.exports = {login, register}

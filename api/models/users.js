@@ -36,6 +36,44 @@ class User {
             }
         })
     }
+
+    static async create(userData) {
+        return new Promise (async (resolve, reject) => {
+            try {
+                const { username, email, password} = userData;
+
+                const saltRounds = 10;
+                const salt = await bcrypt.genSalt(saltRounds)
+                const hash = await bcrypt.hash(password, salt);
+
+                let result = await db.query(
+                    `INSERT INTO users (name, email, password) VALUES ($1, $2. $3) RETURNING *;`, [username, email, password]
+                );
+
+                resolve(new User (result.rows[0]));
+            } catch(err){
+                reject(`User could not be created.`)
+            }
+        })
+    }
+
+    // static async register(userData) {
+    //     return new Promise (async (resolve, reject) => {
+    //         try {
+    //             const { name, email, password} = userData;
+
+               
+               
+    //            let postData = await db.query(`INSERT INTO users (name,email, password) VALUES ($1, $2, $3) RETURNING *;`, [ name, email, hash ]);
+
+    //             let addUser = new User(postData.rows[0]);
+    //             resolve (addUser);
+    //         } catch(err){
+    //             reject(`User could not be created.`)
+    //         }
+    //     })
+    // }
+
    
 }
 
