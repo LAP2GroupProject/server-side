@@ -8,9 +8,11 @@ server.use(express.json());
 
 const usersRoutes = require('./routes/users');
 const habitsRoutes = require('./routes/habits');
+const loginRoutes = require('./routes/login');
 
 server.use('/users', usersRoutes);
 server.use('/habits', habitsRoutes);
+server.use('/login', loginRoutes);
 
 
 module.exports = server
