@@ -242,7 +242,7 @@ li {
 }
 
 /****************************************************** select frequency section */
-#habitCreateContainer {
+#habitSleepContainer, #habitWaterContainer, #habitExerciseContainer {
   margin: 0 auto;
   width: 18rem;
   height: 21rem;
@@ -252,20 +252,30 @@ li {
   padding: 1rem;
 }
 
-#habitCreateContainer h1 {
+#habitSleepContainer h1, #habitWaterContainer h1, #habitExerciseContainer h1 {
   margin-top: 2rem;
 }
 
-#habitCreateContainer h1,
+#habitSleepContainer h1,
 h2 {
   margin-bottom: 2rem;
 }
 
-#habitCreateContainer span {
+#habitWaterContainer h1,
+h2 {
+  margin-bottom: 2rem;
+}
+
+#habitExerciseContainer h1,
+h2 {
+  margin-bottom: 2rem;
+}
+
+#habitSleepContainer span, #habitWaterContainer span, #habitExerciseContainer span {
   color: #42c2ff;
 }
 
-#habitCreateContainer .username-div {
+#habitSleepContainer .username-div, #habitWaterContainer .username-div, #habitExerciseContainer .username-div {
   margin: 5% 0;
   padding-left: 3%;
   border: 1px solid lightgray;
@@ -274,7 +284,7 @@ h2 {
   height: 3rem;
 }
 
-#habitCreateContainer input[type='number'] {
+#habitSleepContainer input[type='number'], #habitWaterContainer input[type='number'], #habitExerciseContainer input[type='number'] {
   border: none;
   background-color: #effffd;
   width: 80%;
@@ -282,7 +292,7 @@ h2 {
   font-size: 2rem;
 }
 
-#habitCreateContainer input[type='button'] {
+#habitSleepContainer input[type='button'], #habitWaterContainer input[type='button'], #habitExerciseContainer input[type='button'] {
   margin: 2.5rem 0 0;
   cursor: pointer;
   background-color: #42c2ff;
@@ -292,21 +302,21 @@ h2 {
   font-size: 1.5rem;
 }
 
-#habitCreateContainer input[type='button']:hover {
+#habitSleepContainer input[type='button']:hover, #habitWaterContainer input[type='button']:hover , #habitExerciseContainer input[type='button']:hover {
   background-color: #85f4ff;
 }
 
 @media (min-width: 992px) {
-  #habitCreateContainer {
+  #habitSleepContainer, #habitWaterContainer, #habitExerciseContainer {
     height: 23rem;
     width: 27rem;
   }
 
-  #habitCreateContainer h1 {
+  #habitSleepContainer h1, #habitWaterContainer h1, #habitExerciseContainer h1 {
     font-size: 2rem;
   }
 
-  #habitCreateContainer h2 {
+  #habitSleepContainer h2, #habitWaterContainer h2, #habitExerciseContainer h2 {
     font-size: 1.5rem;
   }
 }
@@ -379,4 +389,20 @@ h2 {
   #userHabitCompletedPg h1 {
     margin-bottom: 1.5rem;
   }
+}
+
+
+/****************************************************** john css, for buttons */
+.next {
+  margin: 2.5rem 0 0;
+  cursor: pointer;
+  background-color: #42c2ff;
+  border: none;
+  padding: 1rem 2rem;
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+
+.next:hover {
+  background-color: #85f4ff;
 }

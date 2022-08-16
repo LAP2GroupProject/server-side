@@ -91,24 +91,47 @@
         </form>
       </section>
 
-      <!-- ----------------------------------- 'SELECT FREQUENCY' SECTION ---------------------------------------- -->
-      <section id="habitCreateContainer" style="display: none;">
+      <!-- ----------------------------------- 'SELECT SLEEP FREQUENCY' SECTION ---------------------------------------- -->
+      <section id="habitSleepContainer" style="display: none;">
         <h1>Selected habit: <span>[Sleep]</span></h1>
-        <h2>Enter how many hours</h2>
+        <h2>How many hours do you want to sleep every day?</h2>
 
         <div class="username-div">
-          <input type="number" name="hours" id="hours" />
-          <input type="button" value="Submit" />
+          <input type="number" name="hours"  id="sleepInput"/>
+          <input type="button" value="Next" id="sleep"/>
+        </div>
+      </section>
+
+      <!-- ----------------------------------- 'SELECT WATER FREQUENCY' SECTION ---------------------------------------- -->
+      <section id="habitWaterContainer" style="display: none;">
+        <h1>Selected habit: <span>[Water]</span></h1>
+        <h2>How much water (in litres) do you want to drink every day?</h2>
+
+        <div class="username-div">
+          <input type="number" name="hours"  id="waterInput"/>
+          <input type="button" value="Next" id="water"/>
+        </div>
+      </section>
+
+       <!-- ----------------------------------- 'SELECT EXERCISE FREQUENCY' SECTION ---------------------------------------- -->
+       <section id="habitExerciseContainer" style="display: none;">
+        <h1>Selected habit: <span>[Exercise]</span></h1>
+        <h2>How many days a week do you want to exercise?</h2>
+
+        <div class="username-div">
+          <input type="number" name="hours"  id="exerciseInput"/>
+          <input type="button" value="Next" id="exercise"/>
         </div>
       </section>
 
       <!-- ----------------------------------- 'DISPLAY HABIT & FREQUENCY' SECTION ---------------------------------------- -->
       <section id="displayHabitAndFrequencyBg" style="display: none;">
-        <h1>Selected habit: <span>[Sleep]</span></h1>
-        <h2>I will sleep for: <span>[6]</span> hours</h2>
+        <h1>Selected habit: <span id="overviewHabit"></span></h1>
+        <h2>Selected frequency: <span id="overviewFrequency"></span></h2>
 
-        <a href="./user_habit.html">Next</a>
+        <a href="./user_habit.html">Submit</a>
       </section>
+
     </main>
 
     <footer id="footerBg">
