@@ -41,20 +41,30 @@ async function login (req, res) {
     }
 }
 
-async function register (req, res) {
+// async function register (req, res) {
 
+//     try {
+//         console.log(req.body);
+//         const user = await User.create(req.body);
+//         res.status(201).json(user);
+
+//     } catch(err) {
+//         console.log(err);
+//         res.status(401).json({
+//             success: false,
+//             error: 'Error. Unable to create user.'
+//         })
+//     }
+// }
+
+
+async function create(req,res)  {
     try {
-        console.log(req.body);
-        const user = await User.create(req.body);
+        const user = await User.create(req.body.name, req.body.email, req.body.password);
         res.status(201).json(user);
-
-    } catch(err) {
-        console.log(err);
-        res.status(401).json({
-            success: false,
-            error: 'Error. Unable to create user.'
-        })
+    } catch (err) {
+        res.status(404).json({err});
     }
 }
 
-module.exports = {login, register}
+module.exports = {login, create}
