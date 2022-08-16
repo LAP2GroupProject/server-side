@@ -1,0 +1,382 @@
+/****************************************************** custom defaults */
+/* removes auto blue highlighting */
+::selection {
+  color: none;
+  background: none;
+}
+/* For Mozilla Firefox */
+::-moz-selection {
+  color: none;
+  background: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Dosis', sans-serif;
+  color: #000;
+}
+
+body {
+  text-align: center;
+  cursor: default;
+  background-color: #fff;
+  /* for footer */
+  position: relative;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+/****************************************************** small nav */
+#navBarLargeBg {
+  display: none;
+}
+
+#fullMobileNavBg {
+  top: 0;
+  position: fixed;
+  width: 100%;
+  height: 2rem;
+}
+
+#barIconBg {
+  background-color: #effffd;
+  text-align: left;
+  padding: 1rem;
+}
+
+.fa-solid.fa-bars#bars {
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.fa-solid.fa-bars#bars:hover {
+  color: #42c2ff;
+}
+
+#mobileNavLinksBg {
+  text-align: right;
+  background-color: #effffd;
+  display: none;
+  height: 5rem;
+}
+
+#mobileNavLinksBg li {
+  margin-right: 1rem;
+}
+
+#mobileNavLinksBg li a {
+  font-size: 1.5rem;
+}
+
+#mobileNavLinksBg li a:hover {
+  color: #42c2ff;
+  font-weight: 900;
+}
+
+/****************************************************** large nav */
+@media (min-width: 992px) {
+  #fullMobileNavBg {
+    display: none;
+  }
+
+  #navBarLargeBg {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    font-size: 2rem;
+    background-color: #effffd;
+    padding: 0.7rem;
+    width: 100%;
+    height: 4rem;
+    align-content: center;
+    justify-content: end;
+    grid-gap: 4rem;
+    position: fixed;
+    top: 0;
+  }
+
+  #navBarLargeBg a {
+    font-size: 2rem;
+  }
+
+  #navBarLargeBg a:hover {
+    color: #42c2ff;
+    font-weight: 900;
+  }
+}
+
+/****************************************************** arrow */
+#leftArrow {
+  position: absolute;
+  bottom: 6rem;
+  left: 0.5rem;
+}
+
+.fa-solid.fa-circle-left {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.fa-solid.fa-circle-left:hover {
+  color: #42c2ff;
+}
+
+/****************************************************** footer */
+#footerBg {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  background-color: #effffd;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-content: center;
+  justify-content: space-evenly;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.fa-solid.fa-user:hover,
+.fa-solid.fa-calendar-days:hover,
+.fa-solid.fa-sun:hover {
+  color: #42c2ff;
+}
+
+@media (min-width: 992px) {
+  .fa-solid.fa-user,
+  .fa-solid.fa-calendar-days,
+  .fa-solid.fa-sun {
+    font-size: 2rem;
+  }
+}
+
+/******************************************************  no habits section */
+#noHabitsBg {
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 1rem;
+  justify-items: center;
+}
+
+#noHabitBtn {
+  background-color: #42c2ff;
+  padding: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+#noHabitBtn:hover {
+  background-color: #85f4ff;
+}
+
+@media (min-width: 576px) {
+  #noHabitsBg h1 {
+    font-size: 2.5rem;
+  }
+
+  #noHabitBtn {
+    padding: 1.5rem;
+  }
+
+  #noHabitBtn {
+    font-size: 1.5rem;
+  }
+}
+
+/******************************************************  select habits section */
+#habitsBg {
+  margin: 0 auto;
+  width: 18rem;
+  height: 16rem;
+  border: 1px solid lightgray;
+  border-radius: 2%;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+  padding: 1rem;
+}
+
+#habitsBg h2 {
+  margin-bottom: 0;
+}
+
+.habit-div input[type='button'] {
+  border: none;
+  border-radius: 2%;
+  background-color: #42c2ff;
+  margin-top: 5%;
+  padding: 0.5rem 2rem;
+  font-size: 1em;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.habit-div input[type='button']:hover {
+  background-color: #b8fff9;
+}
+
+@media (min-width: 992px) {
+  #habitsBg {
+    width: 27rem;
+    height: 21rem;
+  }
+
+  #habitsBg h1 {
+    font-size: 2rem;
+  }
+
+  #habitsBg h2 {
+    font-size: 1.5rem;
+  }
+
+  .habit-div input[type='button'] {
+    font-size: 1.5em;
+  }
+}
+
+/****************************************************** select frequency section */
+#habitCreateContainer {
+  margin: 0 auto;
+  width: 18rem;
+  height: 21rem;
+  border: 1px solid lightgray;
+  border-radius: 2%;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+  padding: 1rem;
+}
+
+#habitCreateContainer h1 {
+  margin-top: 2rem;
+}
+
+#habitCreateContainer h1,
+h2 {
+  margin-bottom: 2rem;
+}
+
+#habitCreateContainer span {
+  color: #42c2ff;
+}
+
+#habitCreateContainer .username-div {
+  margin: 5% 0;
+  padding-left: 3%;
+  border: 1px solid lightgray;
+  border-radius: 2%;
+  background-color: #effffd;
+  height: 3rem;
+}
+
+#habitCreateContainer input[type='number'] {
+  border: none;
+  background-color: #effffd;
+  width: 80%;
+  outline: none;
+  font-size: 2rem;
+}
+
+#habitCreateContainer input[type='button'] {
+  margin: 2.5rem 0 0;
+  cursor: pointer;
+  background-color: #42c2ff;
+  border: none;
+  padding: 1rem 2rem;
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+
+#habitCreateContainer input[type='button']:hover {
+  background-color: #85f4ff;
+}
+
+@media (min-width: 992px) {
+  #habitCreateContainer {
+    height: 23rem;
+    width: 27rem;
+  }
+
+  #habitCreateContainer h1 {
+    font-size: 2rem;
+  }
+
+  #habitCreateContainer h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/****************************************************** display habit & frequency section */
+#displayHabitAndFrequencyBg {
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 1rem;
+  justify-items: center;
+}
+
+#displayHabitAndFrequencyBg a {
+  background-color: #42c2ff;
+  padding: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+  width: 6rem;
+  font-size: 1.2rem;
+}
+
+#displayHabitAndFrequencyBg span {
+  color: #42c2ff;
+}
+
+#displayHabitAndFrequencyBg a:hover {
+  background-color: #85f4ff;
+}
+
+@media (min-width: 992px) {
+  #displayHabitAndFrequencyBg h1 {
+    font-size: 2.5rem;
+  }
+
+  #displayHabitAndFrequencyBg h2 {
+    font-size: 2rem;
+  }
+
+  #displayHabitAndFrequencyBg a {
+    width: 7rem;
+    font-size: 1.5rem;
+  }
+}
+
+/****************************************************** user habit page */
+#userHabitPg h1 {
+  margin-bottom: 2rem;
+}
+
+#userHabitPg span {
+  color: #85f4ff;
+}
+
+@media (min-width: 992px) {
+  #userHabitPg h1 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/****************************************************** user habit completed page */
+#userHabitCompletedPg h1 {
+  margin-bottom: 2rem;
+}
+
+#userHabitCompletedPg span {
+  color: #85f4ff;
+}
+
+@media (min-width: 992px) {
+  #userHabitCompletedPg h1 {
+    margin-bottom: 1.5rem;
+  }
+}

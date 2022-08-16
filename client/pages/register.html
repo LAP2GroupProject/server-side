@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis&display=swap"
+      rel="stylesheet"
+    />
+    <!-- font awesome -->
+    <script
+      src="https://kit.fontawesome.com/701be9d26f.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <!-- jquery cdn -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+    <!-- custom css -->
+    <link rel="stylesheet" href="../static/styles/login-register.css" />
+    <link rel="stylesheet" href="../static/styles/styles.css" />
+    <!-- custom js -->
+    <script src="../static/scripts/scripts.js" defer></script>
+    <title>Register</title>
+  </head>
+  <body>
+    <!-- nav for smaller screens -->
+    <nav id="fullMobileNavBg">
+      <div id="barIconBg">
+        <i class="fa-solid fa-bars" id="bars"></i>
+      </div>
+      <ul id="mobileNavLinksBg">
+        <li><a href="../index.html">Login</a></li>
+        <li><a href="./register.html">Register</a></li>
+      </ul>
+    </nav>
+
+    <!-- nav for larger screens -->
+    <nav id="navBarLargeBg">
+      <a href="../index.html">Login</a>
+      <a href="./register.html">Register</a>
+    </nav>
+
+    <aside id="leftArrow">
+      <i class="fa-solid fa-circle-left" onclick="history.back()"></i>
+    </aside>
+
+    <div class="container">
+      <div class="form-container">
+        <h2>Join Habit Tracker today.</h2>
+        <form id="login-register">
+          <div class="username-div">
+            <input type="text" placeholder="Name" />
+          </div>
+          <div class="password-div">
+            <input type="text" placeholder="Username" />
+          </div>
+          <div class="password-div">
+            <input type="password" placeholder="Password" />
+          </div>
+          <div class="password-div">
+            <input type="email" placeholder="Email" />
+          </div>
+          <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="../index.html">Log in</a></p>
+      </div>
+    </div>
+
+    <footer id="footerBg">
+      <a href="./user_habit.html"><i class="fa-solid fa-user"></i></a>
+      <a href="./user_habit_completed.html"
+        ><i class="fa-solid fa-calendar-days"></i
+      ></a>
+      <a href="./create_habit.html"><i class="fa-solid fa-sun"></i></a>
+    </footer>
+  </body>
+</html>
