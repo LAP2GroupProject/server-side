@@ -1,4 +1,5 @@
 const db = require('../dbConfig/init');
+const bcrypt = require("bcrypt");
 
 class User {
 
@@ -44,9 +45,12 @@ class User {
                 const saltRounds = 10;
                 const salt = await bcrypt.genSalt(saltRounds)
                 const hash = await bcrypt.hash(password, salt);
+                console.log("saltRounds ", saltRounds);
+                console.log("salt ", salt);
+                console.log("hash ", hash);
 
                 let result = await db.query(
-                    `INSERT INTO users (name, email, password) VALUES ($1, $2. $3) RETURNING *;`, [username, email, hash]
+                    `INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`, [username, email, hash]
                 );
 
                 resolve(new User (result.rows[0]));
