@@ -32,4 +32,4 @@ async function create (req, res) {
     }
 }
 
-module.exports={index,create}
+module.exports={index,create,show}
