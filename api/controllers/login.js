@@ -17,9 +17,12 @@ async function createToken(userData) {
 async function login (req, res) {
 
     try {
-        const { username, password } = req.body
-        const user = await User.getOneByUsername(username);
-        console.log(req.body, user);
+        const name = req.body.name;
+        const password = req.body.password
+
+        //check if there is a user that matches username
+        const user = await User.getOneByUsername(name);
+
         //check if password matches hashing
         const authenticated = await bcrypt.compare(password, user.password);
 
@@ -32,8 +35,10 @@ async function login (req, res) {
             throw "Credentials do not match"
         }
 
-    } catch(err) {
-        console.log(err);
+    } catch (err) {
+
+        console.log(err)
+
         res.status(401).json({
             success: false,
             error: 'Error. Unable to authenticate user.'
