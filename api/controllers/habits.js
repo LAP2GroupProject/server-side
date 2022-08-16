@@ -12,4 +12,14 @@ async function habitIndex (req, res) {
     }
 }
 
-module.exports={habitIndex}
+async function create (req, res) {
+    try {
+        const addHabit = await Habit.create(req.body.habit, req.body.frequency, req.body.streak, req.body.user_id);
+        res.status(201).json(addHabit);
+    
+    } catch (err) {
+        res.status(422).json({err})
+    }
+}
+
+module.exports={habitIndex, create}
