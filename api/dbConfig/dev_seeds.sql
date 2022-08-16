@@ -4,7 +4,7 @@ VALUES
     ('nabin', 'nabin7@yahoo.com', 'passnabin');
 
 
-INSERT INTO habits (habitName,frequency,streak,lastComplete,user_id) 
+INSERT INTO habits (habit,frequency,streak,user_id) 
 VALUES
-    ('yoga','daily',1, '2022-06-18 10:00:29 AM',1),
-    ('play', 'weekly',2, '2022-08-18 09:30:19 AM',2);
+    ('sleep',2,3,1),
+    ('exercise', 3,4,2);
