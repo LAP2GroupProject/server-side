@@ -370,9 +370,45 @@ h2 {
   color: #85f4ff;
 }
 
+
+#displayUserHabits {
+  margin: 0 auto;
+  width: 18rem;
+  height: 21rem;
+  border: 1px solid lightgray;
+  border-radius: 2%;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+  padding: 1rem;
+}
+
+#displayUserHabits th{
+  background-color: #42c2ff;
+}
+
+#displayUserHabits tr:nth-child(even){
+  background-color: #effffd;
+}
+
+#displayUserHabits tr:hover {
+  background-color: #b8fff9;
+}
+
 @media (min-width: 992px) {
   #userHabitPg h1 {
-    margin-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+  #displayUserHabits {
+      width: 32rem;
+      height: 27rem;
+  }
+
+  #displayUserHabits th{
+    font-size: 1.5rem;
+  }
+
+  #displayUserHabits tr td{
+    font-size: 1.5rem;
   }
 }
 
