@@ -36,7 +36,7 @@ async function completeHabit (req, res) {
 }
 
 // get habits by id from habits table
-async function getHabitById(req, res) {
+async function getHabitsById(req, res) {
     try {
         const habitsById = await Habit.habitStreaksById(parseInt(req.params.id))
         console.log("habitsById ==> ", habitsById);
@@ -47,4 +47,4 @@ async function getHabitById(req, res) {
     }
 }
 
-module.exports={habitIndex, create, getHabits, completeHabit, getHabitById}
+module.exports={habitIndex, create, getHabits, completeHabit, getHabitsById}
