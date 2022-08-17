@@ -13,7 +13,7 @@ const verifyToken = require("../middleware/verifyToken");
 router.get('/', habitsController.habitIndex);
 router.post('/', habitsController.create);
 router.get('/:id', habitsController.getHabits)
-router.get('/:id', habitsController.getHabitById)
+router.get('/currentUser', habitsController.getHabitById)
 router.post('/complete', habitsController.completeHabit)
 
 module.exports = router
