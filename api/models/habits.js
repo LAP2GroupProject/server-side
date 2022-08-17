@@ -33,7 +33,7 @@ class Habit {
                 resolve(habits);
                 
             } catch (err) {
-                reject("Error retrieving habits")
+                reject("Error retrieving habits by id")
             }
         })
     }
@@ -55,7 +55,8 @@ class Habit {
     static async habitStreaksById(id){
         return new Promise (async (resolve, reject) => {
             try {
-                const habitStreaks = await db.query('SELECT * FROM habits', [ id ]);
+                const habitStreaks = await db.query('SELECT * FROM habits WHERE user_id = $1;', [ id ]);
+                console.log("habitStreaks ==> ", habitStreaks);
                 const userHabits = habitStreaks.rows.map(h => new Habit(h));
                 resolve(userHabits);
             } catch (err) {
