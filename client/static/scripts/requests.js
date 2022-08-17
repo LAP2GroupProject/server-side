@@ -46,7 +46,18 @@ async function registerRequest (e) {
             body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
         }
         await fetch('http://localhost:3000/register', options)
+        registerMessage()
     } catch (err) {
         alert(err)
     }
+}
+
+
+// register message for users
+function registerMessage() {
+    const registerMessage = document.getElementById("registerMessage");
+    pElem = document.createElement("p");
+    pElem.setAttribute("id", "registerMessage");
+    pElem.textContent = "You have registered!";
+    registerMessage.appendChild(pElem);
 }
