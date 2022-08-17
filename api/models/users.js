@@ -84,6 +84,20 @@ class User {
         })
     }
 
+    static async findUncompletedHabits(data) {
+        return new Promise (async (resolve, reject) => {
+            try {
+                const id = await extractID(data.headers.authorization)
+
+                const habits = await db.query(`SELECT * FROM habits WHERE user_id = $1 AND completetoday = $2;`, [ id, false ])
+                const response = habits.rows.map(h => new Habit(h));
+                resolve(response)
+            } catch (err) {
+                reject(err)
+            }
+        })
+    }
+
     static async completeHabit(data) {
         return new Promise (async (resolve, reject) => {
             try {

@@ -26,7 +26,7 @@ async function loginRequest (e) {
         const res = await response.json()
         if (res.success===true) {
             localStorage.setItem("token", res.token)
-            window.location.assign("create_habit.html")
+            window.location.assign("user_habit_completed.html")
         } else {
             throw "You are not authenticated. Please register!"
         }

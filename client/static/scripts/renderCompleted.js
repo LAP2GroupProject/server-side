@@ -1,4 +1,6 @@
 const form = document.getElementById("register-form")
+const allHabitsComplete = document.getElementById("allHabitsComplete")
+const uncompletedHabits = document.getElementById("userHabitCompletedPg")
 
 async function renderHabits () {
 
@@ -12,13 +14,17 @@ async function renderHabits () {
 
     const response = await fetch("http://localhost:3000/users/habits", options)
     res = await response.json()
-    console.log(res)
+    console.log(res.length)
 
-    res.forEach(res => {
-        if (res.completeToday === false){
+    if (res.length === 0) {
+        uncompletedHabits.style.display = "none"
+        allHabitsComplete.style.display = "block"
+    } else {
+        res.forEach(res => {
             createElement(res)
-        }
     });
+    }
+
     addCompleteButton()
     } catch (error) {
         window.location.assign("/index.html")
