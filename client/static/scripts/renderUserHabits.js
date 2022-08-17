@@ -25,10 +25,10 @@ function showHabits(data) {
 
     cell1.textContent = data.habit;
     cell2.textContent = data.streak;
-
-    if (true === true) { // needs toggling using 'completed' from other page
-        cell3.innerHTML = `<i class="fa-solid fa-check"></i>`;        
-    } else {
+    
+    if (data.streak === 0) {
         cell3.innerHTML = `<i class="fa-solid fa-xmark"></i>`;           
+    } else {
+        cell3.innerHTML = `<i class="fa-solid fa-check"></i>`;       
     }
 }
