@@ -294,7 +294,7 @@ h2 {
   margin-bottom: 2rem;
 }
 
-#habitSleepContainer span, #habitWaterContainer spa#mobileNavLinksBgn, #habitExerciseContainer span {
+#habitSleepContainer span, #habitWaterContainer span, #habitExerciseContainer span, #mobileNavLinksBg span { /* check if all needed*/
   color: #42c2ff;
 }
 
