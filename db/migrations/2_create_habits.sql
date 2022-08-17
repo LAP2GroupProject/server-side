@@ -5,5 +5,6 @@ CREATE TABLE habits (
     habit varchar(50) NOT NULL,
     frequency int,
     streak int,
+    lastComplete int,
     user_id int
 );
