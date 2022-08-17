@@ -168,6 +168,18 @@ li {
   font-size: 1.5rem;
 }
 
+#flashSubmitMessage {
+  position: absolute;
+    top: 11rem;
+    left: 1rem;
+}
+
+#flashSubmitMessage p{
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #42c2ff;
+}
+
 /****************************************************** no habits section */
 #noHabitsBg {
   display: grid;
