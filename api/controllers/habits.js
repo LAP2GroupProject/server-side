@@ -27,4 +27,14 @@ async function getHabits (req, res) {
     }
 }
 
-module.exports={habitIndex, create, getHabits}
+// get habits by id from habits table
+async function getHabitById(req, res) {
+    try {
+        const habitsById = await Habit.habitStreaksById(parseInt(req.params.id))
+        res.status(200).json(habitsById)
+    } catch (err) {
+        res.status(404).json({err})
+    }
+}
+
+module.exports={habitIndex, create, getHabits, getHabitById}
