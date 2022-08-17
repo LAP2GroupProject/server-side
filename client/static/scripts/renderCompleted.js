@@ -2,7 +2,8 @@ const form = document.getElementById("register-form")
 
 async function renderHabits () {
 
-    const options = {
+    try {
+        const options = {
         method: 'GET',
         headers: { "Content-type": "application/json",
                     'authorization': localStorage.getItem("token") 
@@ -19,6 +20,10 @@ async function renderHabits () {
         }
     });
     addCompleteButton()
+    } catch (error) {
+        window.location.assign("/index.html")
+    }
+
 }
 
 function createElement(res) {
