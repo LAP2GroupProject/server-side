@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/users");
 
 async function createToken(userData) {
-    console.log(process.env.SECRET_PASSWORD)
     const token = await jwt.sign({
         username: userData["name"]
     }, process.env["SECRET_PASSWORD"], {expiresIn: 60 * 60})

@@ -21,14 +21,15 @@ async function loginRequest (e) {
             body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
         }
         const response = await fetch('http://localhost:3000/login', options)
-        response.json()
-        if (response.success) {
-            console.log(response)
+        const res = await response.json()
+        if (res.success===true) {
+            localStorage.setItem("token", res.token)
+            window.location.assign("/")
         } else {
             throw "You are not authenticated. Please register!"
         }
     } catch (err) {
-        console.log(err)
+        alert(err)
     }
 
 
