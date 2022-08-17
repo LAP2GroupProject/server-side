@@ -8,8 +8,12 @@ const registerRoutes = require('./routes/register');
 
 const server = express();
 
+// middleware
+
 server.use(cors());
 server.use(express.json());
+
+//routes
 
 server.use('/users', usersRoutes);
 server.use('/habits', habitsRoutes);

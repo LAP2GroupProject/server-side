@@ -7,6 +7,7 @@ async function postHabit (e) {
             body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
         }
         await fetch('http://localhost:3000/habits', options)
+        
     } catch (err) {
         console.log(err)
     }
@@ -24,7 +25,7 @@ async function loginRequest (e) {
         const res = await response.json()
         if (res.success===true) {
             localStorage.setItem("token", res.token)
-            window.location.assign("/")
+            window.location.assign("create_habit.html")
         } else {
             throw "You are not authenticated. Please register!"
         }
