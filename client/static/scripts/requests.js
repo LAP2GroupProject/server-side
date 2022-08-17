@@ -33,5 +33,19 @@ async function loginRequest (e) {
         alert(err)
     }
 
+}
 
+async function registerRequest (e) {
+    console.log("i am here")
+    e.preventDefault()
+    try {
+        const options = {
+            method: 'POST',
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
+        }
+        await fetch('http://localhost:3000/register', options)
+    } catch (err) {
+        alert(err)
+    }
 }

@@ -24,11 +24,12 @@
       crossorigin="anonymous"
     ></script>
     <!-- custom css -->
-    <link rel="stylesheet" href="../static/styles/login-register.css" />
-    <link rel="stylesheet" href="../static/styles/styles.css" />
+    <link rel="stylesheet" href="./static/styles/login-register.css" />
+    <link rel="stylesheet" href="./static/styles/styles.css" />
     <!-- custom js -->
-    <script src="../static/scripts/scripts.js" defer></script>
-    <script src="../static/scripts/login-register.js" defer></script>
+    <script src="./static/scripts/scripts.js" defer></script>
+    <script src="./static/scripts/register.js" defer></script>
+    <script src="./static/scripts/requests.js"></script>
     <title>Register</title>
   </head>
   <body>
@@ -38,14 +39,14 @@
         <i class="fa-solid fa-bars" id="bars"></i>
       </div>
       <ul id="mobileNavLinksBg">
-        <li><a href="../index.html">Login</a></li>
+        <li><a href="./index.html">Login</a></li>
         <li><a href="./register.html">Register</a></li>
       </ul>
     </nav>
 
     <!-- nav for larger screens -->
     <nav id="navBarLargeBg">
-      <a href="../index.html">Login</a>
+      <a href="./index.html">Login</a>
       <a href="./register.html">Register</a>
     </nav>
 
@@ -58,20 +59,17 @@
         <h2>Join Habit Tracker today.</h2>
         <form id="register-form">
           <div class="username-div">
-            <input type="text" placeholder="Name" />
+            <input type="text" placeholder="Name" name="name"/>
           </div>
           <div class="password-div">
-            <input type="text" placeholder="Username" />
+            <input type="email" placeholder="Email" name="email"/>
           </div>
           <div class="password-div">
-            <input type="password" placeholder="Password" />
-          </div>
-          <div class="password-div">
-            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Password" name="password"/>
           </div>
           <button type="submit">Register</button>
         </form>
-        <p>Already have an account? <a href="../index.html">Log in</a></p>
+        <p>Already have an account? <a href="./index.html">Log in</a></p>
       </div>
     </div>
 

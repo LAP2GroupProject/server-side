@@ -24,12 +24,11 @@
       crossorigin="anonymous"
     ></script>
     <!-- custom css -->
-    <link rel="stylesheet" href="../static/styles/login-register.css" />
-    <link rel="stylesheet" href="../static/styles/styles.css" />
+    <link rel="stylesheet" href="./static/styles/login-register.css" />
+    <link rel="stylesheet" href="./static/styles/styles.css" />
     <!-- custom js -->
-    <script src="../static/scripts/scripts.js" defer></script>
-    <script src="../static//scripts/renderUserHabits.js"></script>
-    <title>Your Habits</title>
+    <script src="./static/scripts/scripts.js" defer></script>
+    <title>Your Completed Habits</title>
   </head>
   <body>
     <!-- nav for smaller screens -->
@@ -38,14 +37,14 @@
         <i class="fa-solid fa-bars" id="bars"></i>
       </div>
       <ul id="mobileNavLinksBg">
-        <li><a href="../index.html">Login</a></li>
+        <li><a href="./index.html">Login</a></li>
         <li><a href="./register.html">Register</a></li>
       </ul>
     </nav>
 
     <!-- nav for larger screens -->
     <nav id="navBarLargeBg">
-      <a href="../index.html">Login</a>
+      <a href="./index.html">Login</a>
       <a href="./register.html">Register</a>
     </nav>
 
@@ -53,10 +52,10 @@
       <i class="fa-solid fa-circle-left" onclick="history.back()"></i>
     </aside>
 
-    <main id="userHabitPg">
+    <main id="userHabitCompletedPg">
       <header>
-        <h1>Your habits:</h1>
-        <h2>I will sleep for <span>[6]</span> hours</h2>
+        <h1>Your habits today</h1>
+        <h2>I slept for <span>[6]</span> hours</h2>
       </header>
     </main>
 
