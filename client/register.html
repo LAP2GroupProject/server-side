@@ -54,22 +54,33 @@
       <i class="fa-solid fa-circle-left" onclick="history.back()"></i>
     </aside>
 
-    <div class="container">
+    <div class="container" id="register-container">
       <div class="form-container">
-        <h2>Join Habit Tracker today.</h2>
+        <h1>Join Habit Tracker today.</h1>
         <form id="register-form">
           <div class="username-div">
-            <input type="text" placeholder="Name" name="name"/>
+            <input type="text" placeholder="Name" name="name" minlength="4"/>
           </div>
           <div class="password-div">
-            <input type="email" placeholder="Email" name="email"/>
+            <input type="email" placeholder="Email" name="email" minlength="6"/>
           </div>
           <div class="password-div">
-            <input type="password" placeholder="Password" name="password"/>
+            <input type="password" placeholder="Password" name="password" minlength="4"/>
           </div>
           <button type="submit">Register</button>
         </form>
         <p>Already have an account? <a href="./index.html">Log in</a></p>
+      </div>
+    </div>
+
+    <div class="container" id="thank-you-message" style="display: none;">
+      <div class="form-container">
+        <h1>Success!</h1>
+        <p>Your account has been created.</p>
+        <div class="success-div">
+          <i class="far fa-check-circle fa-5x fa-fw success-icon"></i>
+        </div>
+        <button class="success-log-in-button" onclick="window.location.href='/index.html'">Log in</button>
       </div>
     </div>
 

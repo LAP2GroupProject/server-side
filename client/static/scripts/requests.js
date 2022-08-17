@@ -44,7 +44,11 @@ async function registerRequest (e) {
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
         }
-        await fetch('http://localhost:3000/register', options)
+        const response = await fetch('http://localhost:3000/register', options)
+        if (response.status === 201) {
+            document.getElementById("register-container").style.display = "none"
+            document.getElementById("thank-you-message").style.display = "block"
+        }
     } catch (err) {
         alert(err)
     }
