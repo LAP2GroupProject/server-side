@@ -379,6 +379,7 @@ h2 {
   border-radius: 2%;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
   padding: 1rem;
+  overflow: auto;
 }
 
 #displayUserHabits th{
@@ -390,7 +391,7 @@ h2 {
 }
 
 #displayUserHabits tr:hover {
-  background-color: #b8fff9;
+  background-color: #85f4ff;
 }
 
 @media (min-width: 992px) {

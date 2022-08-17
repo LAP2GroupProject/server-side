@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="./static/styles/styles.css" />
     <!-- custom js -->
     <script src="./static/scripts/scripts.js" defer></script>
-    <script src="./static//scripts/renderUserHabits.js"></script>
+    <script src="./static/scripts/renderUserHabits.js"></script>
     <title>Your Habits</title>
   </head>
   <body>
@@ -56,24 +56,25 @@
     <main id="userHabitPg">
       <header>
         <h1>Your habits:</h1>
-        <h2>I will sleep for <span>[6]</span> hours</h2>
+        <!-- <h2>I will sleep for <span>[6]</span> hours</h2>
+        <h2>Most recent completion streak <span>[5]</span></h2> -->
       </header>
       
-        <table id="displayUserHabits"  cellspacing="0">
+        <table id="displayUserHabits" cellspacing="0">
           <tr>
             <th>Habit</th>
             <th>Streak</th>
             <th>Completed</th>
           </tr>
           <tr>
-            <td>sleep</td>
-            <td>5</td>
-            <td><i class="fa-solid fa-check"></i></td>
-          </tr>
-          <tr>
             <td>exercise</td>
             <td>0</td>
             <td><i class="fa-solid fa-xmark"></i></td>
+          </tr>
+          <tr>
+            <td>sleep</td>
+            <td>5</td>
+            <td><i class="fa-solid fa-check"></i></td>
           </tr>
           <tr>
             <td>water</td>
