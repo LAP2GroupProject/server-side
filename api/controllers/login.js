@@ -7,7 +7,7 @@ const User = require("../models/users");
 
 async function createToken(userData) {
     const token = await jwt.sign({
-        username: userData["name"]
+        id: userData["id"]
     }, process.env["SECRET_PASSWORD"], {expiresIn: 60 * 60})
 
     return token;
@@ -17,7 +17,7 @@ async function login (req, res) {
 
     try {
         const name = req.body.name;
-        const password = req.body.password
+        const password = req.body.password;
 
         //check if there is a user that matches username
         const user = await User.getOneByUsername(name);
@@ -28,7 +28,8 @@ async function login (req, res) {
         if (authenticated) {
             res.json({
                 success: true,
-                token: "Bearer " + await createToken(user)
+                token: "Bearer " + await createToken(user) 
+                /////////// can i create a token using user.id instead? //////////////
             })
         } else {
             throw "Credentials do not match"

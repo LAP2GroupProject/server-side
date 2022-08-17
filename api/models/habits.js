@@ -24,9 +24,10 @@ class Habit {
         })
     }
 
-    static async allByUserId(id) {
+    static async allByUserId(data) {
         return new Promise (async (resolve, reject) => {
             try {
+                console.log(data)
                 const habitData = await db.query('SELECT * FROM habits WHERE user_id = $1;', [ id ])
                 const habits = habitData.rows.map(h => new Habit(h))
                 resolve(habits);

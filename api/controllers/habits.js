@@ -27,4 +27,12 @@ async function getHabits (req, res) {
     }
 }
 
-module.exports={habitIndex, create, getHabits}
+async function completeHabit (req, res) {
+    try {
+        
+    } catch (err) {
+        res.status(500).json({err})
+    }
+}
+
+module.exports={habitIndex, create, getHabits, completeHabit}

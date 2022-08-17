@@ -7,7 +7,9 @@ const usersRoutes = Router()
 //usersRoutes.use(verifyToken)
 
 usersRoutes.get('/', usersController.index); //gets all users
-usersRoutes.get('/:id', usersController.show); //gets all users by id
+//usersRoutes.get('/:id', usersController.show); //gets all users by id
+usersRoutes.get('/habits', usersController.showHabits); //gets all user's habits
+//usersRoutes.get('/username/:name', usersController.showByName); //gets user by name
 
 // router.post('/', verifyToken, usersController.create); //creates post route for users
 

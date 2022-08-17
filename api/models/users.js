@@ -1,6 +1,7 @@
 const db = require('../dbConfig/init');
 const bcrypt = require("bcrypt")
-
+const jwt = require ("jsonwebtoken");
+const Habit = require("../models/habits")
 class User {
 
     constructor(data){
@@ -67,6 +68,33 @@ class User {
             }
         })
     }
+
+    static async findHabits(data) {
+        return new Promise (async (resolve, reject) => {
+            try {
+                const id = await extractID(data.headers.authorization)
+
+                const habits = await db.query(`SELECT * FROM habits WHERE user_id = $1;`, [ id ])
+                const response = habits.rows.map(h => new Habit(h));
+                resolve(response)
+            } catch (err) {
+                reject(err)
+            }
+        })
+    }
+}
+
+ async function extractID (token) {
+    const rawToken = token.split(' ')[1];
+     return jwt.verify(rawToken, process.env["SECRET_PASSWORD"], (err, decoded) => {
+         if (err) {
+             res.status(401).json({ success: false, message: "Invalid token" });
+         } else {
+             // const id = decoded.id
+             console.log(decoded);
+             return decoded.id;
+         }
+     });
 }
 
 module.exports = User;
