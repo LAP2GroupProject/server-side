@@ -3,7 +3,8 @@ async function postHabit (e) {
     try {
         const options = {
             method: 'POST',
-            headers: { "Content-type": "application/json" },
+            headers: { "Content-type": "application/json",
+                       'authorization': localStorage.getItem("token") },
             body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
         }
         await fetch('http://localhost:3000/habits', options)
