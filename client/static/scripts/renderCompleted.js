@@ -14,7 +14,9 @@ async function renderHabits () {
     console.log(res)
 
     res.forEach(res => {
-        createElement(res)
+        if (res.completeToday === false){
+            createElement(res)
+        }
     });
     addCompleteButton()
 }
