@@ -1,4 +1,6 @@
 const db = require('../dbConfig/init');
+const data = require("./users")
+const extractID = require("./extract")
 // const User=require('./users')
 class Habit {
 
@@ -39,11 +41,15 @@ class Habit {
     }
 
     //create a habit
-    static async create(habit, frequency, user_id){
+    static async create(data){
         return new Promise (async (resolve, reject) => {
             try {
-                let result = await db.query(`INSERT INTO habits (habit, frequency, streak, user_id) VALUES ($1, $2, $3, $4) RETURNING *;`, [ habit, frequency, 0, user_id ]);
-                resolve (result.rows[0]);
+                const id = await extractID(data.headers.authorization)
+                //console.log(data.body)
+                //console.log(id)
+                let newData = await db.query(`INSERT INTO habits (habit, frequency, streak, user_id) VALUES ($1, $2, $3, $4) RETURNING *;`, [ data.body.habit, data.body.frequency, 0, id ]);
+                let newHabit = new Habit(newData.rows[0])
+                resolve (newHabit);
             } catch (err) {
                 reject('habit could not be created');
             }
