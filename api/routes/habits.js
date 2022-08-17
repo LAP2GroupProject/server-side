@@ -8,7 +8,7 @@ const verifyToken = require("../middleware/verifyToken");
 // router.post('/', habitsController.create);
 // router.patch('/:id', habitsController.patch)
 
-router.use(verifyToken)
+// router.use(verifyToken)
 
 router.get('/', habitsController.habitIndex);
 router.post('/', habitsController.create);
