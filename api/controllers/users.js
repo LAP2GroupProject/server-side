@@ -22,6 +22,27 @@ async function show (req, res) {
     }
 }
 
+// get user habits
+
+async function showHabits (req, res) {
+    try {
+        const user = await User.findHabits(req);
+        res.status(200).json(user);
+    } catch (err) {
+        res.status(404).json({err})
+    }
+}
+
+// get user by name
+// async function showByName (req, res) {
+//     try {
+//         const user = await User.getOneByUsername(req.params.name);
+//         res.status(200).json(user);
+//     } catch (err) {
+//         res.status(404).json({err})
+//     }
+// }
+
 async function create (req, res) {
     try {
         const user = await User.create(req.body.name, req.body.email, req.body.password);
@@ -32,4 +53,4 @@ async function create (req, res) {
     }
 }
 
-module.exports={index,create,show}
+module.exports={index,create,show,showHabits}
