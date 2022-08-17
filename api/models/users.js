@@ -2,6 +2,7 @@ const db = require('../dbConfig/init');
 const bcrypt = require("bcrypt")
 const jwt = require ("jsonwebtoken");
 const Habit = require("../models/habits")
+const extractID = require("./extract")
 class User {
 
     constructor(data){
@@ -82,19 +83,6 @@ class User {
             }
         })
     }
-}
-
- async function extractID (token) {
-    const rawToken = token.split(' ')[1];
-     return jwt.verify(rawToken, process.env["SECRET_PASSWORD"], (err, decoded) => {
-         if (err) {
-             res.status(401).json({ success: false, message: "Invalid token" });
-         } else {
-             // const id = decoded.id
-             console.log(decoded);
-             return decoded.id;
-         }
-     });
 }
 
 module.exports = User;
