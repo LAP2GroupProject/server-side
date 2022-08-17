@@ -9,6 +9,7 @@ class Habit {
         this.habit = data.habit;
         this.frequency = data.frequency;
         this.streak=data.streak;
+        this.completeToday = data.completetoday;
        // this.user_id = { name: data.name, path: `/users/${data.user_id}`};
         this.user_id = data.user_id;
     }
@@ -47,8 +48,11 @@ class Habit {
                 const id = await extractID(data.headers.authorization)
                 //console.log(data.body)
                 //console.log(id)
-                let newData = await db.query(`INSERT INTO habits (habit, frequency, streak, user_id) VALUES ($1, $2, $3, $4) RETURNING *;`, [ data.body.habit, data.body.frequency, 0, id ]);
+                let newData = await db.query(`INSERT INTO habits (habit, frequency, streak, completeToday, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING *;`, [ data.body.habit, data.body.frequency, 0, false, id ]);
+                //let newData = await db.query(`INSERT INTO habits (habit, frequency, streak, user_id) VALUES ($1, $2, $3, $4) RETURNING *;`, [ data.body.habit, data.body.frequency, 0, id ]);
                 let newHabit = new Habit(newData.rows[0])
+                console.log(newData.rows[0])
+                console.log(newHabit)
                 resolve (newHabit);
             } catch (err) {
                 reject('habit could not be created');

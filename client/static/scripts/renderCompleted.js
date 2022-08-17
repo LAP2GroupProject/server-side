@@ -48,6 +48,6 @@ function addCompleteButton() {
     form.appendChild(button)
 }
 
-//form.addEventListener("submit", completeHabit)
+form.addEventListener("submit", completeHabit)
 
 renderHabits()

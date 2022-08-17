@@ -13,6 +13,5 @@ const verifyToken = require("../middleware/verifyToken");
 router.get('/', habitsController.habitIndex);
 router.post('/', habitsController.create);
 router.get('/:id', habitsController.getHabits)
-router.post('/complete', habitsController.completeHabit)
 
 module.exports = router
