@@ -24,9 +24,10 @@ class Habit {
         })
     }
 
-    static async allByUserId(id) {
+    static async allByUserId(data) {
         return new Promise (async (resolve, reject) => {
             try {
+                console.log(data)
                 const habitData = await db.query('SELECT * FROM habits WHERE user_id = $1;', [ id ])
                 const habits = habitData.rows.map(h => new Habit(h))
                 resolve(habits);
@@ -48,21 +49,6 @@ class Habit {
             }
         });
     };
-
-
-    // Pulling habit by id using sql query
-    static async habitStreaksById(id){
-        return new Promise (async (resolve, reject) => {
-            try {
-                const habitStreaks = await db.query('SELECT * FROM habits WHERE id = $1;', [ id ]);
-                const userHabits = habitStreaks.rows.map(h => new Habit(h));
-                resolve(userHabits);
-                
-            } catch (err) {
-                reject("Error retrieving user's habits");
-            }
-        })
-    }
    
 }
 
