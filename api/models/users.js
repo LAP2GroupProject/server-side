@@ -102,8 +102,8 @@ class User {
         return new Promise (async (resolve, reject) => {
             try {
                 const id = await extractID(data.headers.authorization)
-                console.log(data.body)
-                const updatedHabit = await db.query(`UPDATE habits SET completetoday='true' WHERE user_id = $1 AND habit = $2 RETURNING *;`, [ id, data.body.habit ])
+                //console.log(data.body)
+                const updatedHabit = await db.query(`UPDATE habits SET completetoday='true', streak=streak+1 WHERE user_id = $1 AND habit = $2 RETURNING *;`, [ id, data.body.habit ])
                 const completedHabit = updatedHabit.rows[0]
                 console.log(completedHabit)
                 resolve(completedHabit)
