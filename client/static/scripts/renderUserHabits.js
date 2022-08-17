@@ -27,7 +27,7 @@ function showHabits(data) {
     cell2.textContent = data.streak;
     
     if (data.streak === 0) {
-        cell3.innerHTML = `<i class="fa-solid fa-xmark"></i>`;           
+        cell3.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
     } else {
         cell3.innerHTML = `<i class="fa-solid fa-check"></i>`;       
     }
