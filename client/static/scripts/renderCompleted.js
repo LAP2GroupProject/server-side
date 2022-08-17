@@ -34,7 +34,7 @@ function createElement(res) {
         elem.appendChild(habitLabel)
         const habitElem = document.createElement("input")
         habitElem.type = "checkbox"
-        habitElem.name = res.habit
+        habitElem.name = "habit"
         habitElem.value = res.habit
         habitElem.id = "habitCheckBox"
         elem.appendChild(habitElem)

@@ -60,6 +60,7 @@ async function completeHabit (e) {
             body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
         }
         await fetch('http://localhost:3000/users/complete', options)
+        window.location.reload()
     } catch (err) {
         alert(err)
     }

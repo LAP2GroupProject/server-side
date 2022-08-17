@@ -9,8 +9,8 @@ class Habit {
         this.habit = data.habit;
         this.frequency = data.frequency;
         this.streak=data.streak;
+        this.lastComplete = data.lastComplete;
         this.completeToday = data.completetoday;
-       // this.user_id = { name: data.name, path: `/users/${data.user_id}`};
         this.user_id = data.user_id;
     }
 
@@ -51,7 +51,7 @@ class Habit {
                 let newData = await db.query(`INSERT INTO habits (habit, frequency, streak, completeToday, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING *;`, [ data.body.habit, data.body.frequency, 0, false, id ]);
                 //let newData = await db.query(`INSERT INTO habits (habit, frequency, streak, user_id) VALUES ($1, $2, $3, $4) RETURNING *;`, [ data.body.habit, data.body.frequency, 0, id ]);
                 let newHabit = new Habit(newData.rows[0])
-                console.log(newData.rows[0])
+                //console.log(newData.rows[0])
                 console.log(newHabit)
                 resolve (newHabit);
             } catch (err) {

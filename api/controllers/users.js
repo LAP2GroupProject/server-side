@@ -49,7 +49,8 @@ async function create (req, res) {
 
 async function completeHabit (req, res) {
     try {
-        
+        const completedHabit = await User.completeHabit(req)
+        res.status(200).json(completedHabit)
     } catch (err) {
         res.status(500).json({err})
     }
