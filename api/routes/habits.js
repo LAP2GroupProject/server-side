@@ -13,5 +13,6 @@ router.use(verifyToken)
 router.get('/', habitsController.habitIndex);
 router.post('/', habitsController.create);
 router.get('/:id', habitsController.getHabits)
+router.get('/:id', habitsController.getHabitById)
 
 module.exports = router
