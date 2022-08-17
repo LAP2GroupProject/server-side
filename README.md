@@ -53,7 +53,8 @@ This is the server side repository of a habit tracker website.The client side re
 
 ## Bugs
 
-- dhgdhgdhdgh
+- [Your Completed Habits](./client/user_habit_completed.html) page shows all habits in the database instead of those belonging to the current user.
+- Non logged in users can still access all pages.
 
 ## Wins & Challenges
 
