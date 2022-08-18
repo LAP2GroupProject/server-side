@@ -1,10 +1,12 @@
 // fetching habit & streak
 async function habitStreaksRequest() {
     try {
-        const response = await fetch('http://localhost:3000/habits')
+        const response = await fetch(`http://localhost:3000/habits/currentUser/2`) // NUMBER HAS BEEN HARD CODED!!
         const data = await response.json();
 
+        console.log("data HERE ==>", data);
         data.map(singleObj => {
+
             console.log(singleObj);
             showHabits(singleObj)
         })
