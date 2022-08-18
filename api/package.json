@@ -5,9 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js",
+    "start": "nodemon -L index.js",
     "dev": "nodemon -L index.js",
-    "seedDev": "node dbConfig/seedDev.js"
+    "seedDev": "node dbConfig/seedDev.js",
+    "unitTests": "jest --testPathPattern=/unit/ --watchAll --verbose",
+    "coverage": "jest --watchAll --coverage  --verbose"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +27,8 @@
     "pg": "^8.7.3",
     "pool": "^0.4.1",
     "bcrypt": "*",
-    "jsonwebtoken": "*"
+    "jsonwebtoken": "*",
+    "coverage": "^0.4.1",
+    "jest": "^28.1.3"
   }
 }
