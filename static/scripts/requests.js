@@ -7,7 +7,7 @@ async function postHabit (e) {
                        'authorization': localStorage.getItem("token") },
             body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
         }
-        await fetch('http://localhost:3000/habits', options)
+        await fetch('https://habit-tracker-118.herokuapp.com/habits', options)
         
     } catch (err) {
         console.log(err)
@@ -22,7 +22,7 @@ async function loginRequest (e) {
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
         }
-        const response = await fetch('http://localhost:3000/login', options)
+        const response = await fetch('https://habit-tracker-118.herokuapp.com/login', options)
         const res = await response.json()
         if (res.success===true) {
             localStorage.setItem("token", res.token)
@@ -46,10 +46,10 @@ async function registerRequest (e) {
             body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
         }
 
-        await fetch('http://localhost:3000/register', options)
+        await fetch('https://habit-tracker-118.herokuapp.com/register', options)
         registerMessage()
 
-        const response = await fetch('http://localhost:3000/register', options)
+        const response = await fetch('https://habit-tracker-118.herokuapp.com/register', options)
         if (response.status === 201) {
             document.getElementById("register-container").style.display = "none"
             document.getElementById("thank-you-message").style.display = "block"
@@ -69,7 +69,7 @@ async function completeHabit (e) {
                        'authorization': localStorage.getItem("token") },
             body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
         }
-        await fetch('http://localhost:3000/users/complete', options)
+        await fetch('https://habit-tracker-118.herokuapp.com/users/complete', options)
         window.location.reload()
     } catch (err) {
         alert(err)

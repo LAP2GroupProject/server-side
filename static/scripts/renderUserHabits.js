@@ -7,7 +7,7 @@ async function habitStreaksRequest() {
                     'authorization': localStorage.getItem("token") 
             }
         }
-        const response = await fetch('http://localhost:3000/habits', options)
+        const response = await fetch('https://habit-tracker-118.herokuapp.com/habits', options)
         const data = await response.json();
 
         data.forEach(habit => {

@@ -12,7 +12,7 @@ async function renderHabits () {
             }
     }
 
-    const response = await fetch("http://localhost:3000/users/habits", options)
+    const response = await fetch("https://habit-tracker-118.herokuapp.com/users/habits", options)
     res = await response.json()
     console.log(res.length)
 
