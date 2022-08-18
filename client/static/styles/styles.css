@@ -63,7 +63,7 @@ li {
   text-align: right;
   background-color: #effffd;
   display: none;
-  height: 6rem;
+  height: 8.5rem;
 }
 
 #mobileNavLinksBg li {
@@ -87,7 +87,7 @@ li {
 
   #navBarLargeBg {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
     font-size: 2rem;
     background-color: #effffd;
     padding: 0.7rem;
