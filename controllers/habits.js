@@ -2,7 +2,7 @@ const Habit = require('../models/habits')
 
 async function habitIndex (req, res) {
     try {
-        const habits = await Habit.all;
+        const habits = await Habit.all(req);
         res.status(200).json(habits);
     } catch (err) {
         res.status(500).json({err})
@@ -28,6 +28,13 @@ async function getHabits (req, res) {
     }
 }
 
+async function completeHabit (req, res) {
+    try {
+        
+    } catch (err) {
+        res.status(500).json({err})
+    }
+}
 
 // get habits by id from habits table
 async function getHabitsById(req, res) {
@@ -41,4 +48,4 @@ async function getHabitsById(req, res) {
     }
 }
 
-module.exports={habitIndex, create, getHabits, getHabitsById}
+module.exports={habitIndex, create, getHabits, completeHabit, getHabitsById}

@@ -1,4 +1,3 @@
-
 const User = require('../models/users')
 
 //Get all users
@@ -26,6 +25,7 @@ async function show (req, res) {
 
 async function showHabits (req, res) {
     try {
+        const h = await User.updateHabits(req)
         const user = await User.findUncompletedHabits(req);
         res.status(200).json(user);
     } catch (err) {

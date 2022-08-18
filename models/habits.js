@@ -16,10 +16,11 @@ class Habit {
     }
 
     // get all habits
-    static get all() {
+    static async all(data) {
         return new Promise (async (resolve, reject) => {
             try {
-                const habitData = await db.query('select * from habits;')
+                const id = await extractID(data.headers.authorization)
+                const habitData = await db.query('SELECT * FROM habits WHERE user_id=$1;', [ id ])
                 const habits = habitData.rows.map(h => new Habit(h))
                 resolve(habits);
             } catch (err) {
