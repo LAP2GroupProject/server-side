@@ -28,13 +28,6 @@ async function getHabits (req, res) {
     }
 }
 
-async function completeHabit (req, res) {
-    try {
-        
-    } catch (err) {
-        res.status(500).json({err})
-    }
-}
 
 // get habits by id from habits table
 async function getHabitsById(req, res) {
@@ -48,4 +41,4 @@ async function getHabitsById(req, res) {
     }
 }
 
-module.exports={habitIndex, create, getHabits, completeHabit, getHabitsById}
+module.exports={habitIndex, create, getHabits, getHabitsById}

@@ -10,7 +10,7 @@ usersRoutes.get('/', usersController.index); //gets all users
 usersRoutes.get('/habits', usersController.showHabits); //gets all user's habits
 usersRoutes.post('/complete', usersController.completeHabit) //completes a user's habits for the day
 //usersRoutes.get('/username/:name', usersController.showByName); //gets user by name
-//usersRoutes.get('/:id', usersController.show); //gets all users by id
+// usersRoutes.get('/:id', usersController.show); //gets all users by id
 
 // router.post('/', verifyToken, usersController.create); //creates post route for users
 
