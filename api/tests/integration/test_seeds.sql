@@ -1,7 +1,20 @@
-TRUNCATE users RESTART IDENTITY;
+TRUNCATE users,
+habits RESTART IDENTITY;
 
 INSERT INTO
-  authors (name, email, password)
+  users (name, email, password)
 VALUES
-  ('Test User 1', 'testemail1@test.com', 'secret_password1'),
-  ('Test User 2', 'testemail2@test.com', 'secret_password2');
+  ('test', 'test@test.com', 'testPassword');
+
+INSERT INTO
+  habits (
+    habit,
+    frequency,
+    streak,
+    lastComplete,
+    completeToday,
+    user_id
+  )
+VALUES
+  ('testhabit1', 2, 3, 0, FALSE, 1),
+  ('testhabit2', 5, 1, 461328, TRUE, 1);
