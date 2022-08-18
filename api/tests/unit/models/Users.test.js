@@ -22,13 +22,21 @@ describe("users", () => {
       jest.spyOn(db, "query").mockResolvedValueOnce({
         rows: [
           {
-            id: 1,
-            habitName: "habit1",
-            userId: 3,
-            frequency: 8,
-            streak: 4
-          },
-          { id: 2, habitName: "habit2", userId: 1, frequency: 6, streak: 8 }
+            id: 3,
+            habit: "exercise",
+            frequency: 5,
+            streak: 1,
+            completeToday: false,
+            user_id: 1
+          },  
+          {
+            id: 4,
+            habit: "water",
+            frequency: 5,
+            streak: 1,
+            completeToday: true,
+            user_id: 1
+          }        
         ]
       });
       let testUser = new User({
@@ -37,9 +45,9 @@ describe("users", () => {
         email: "testEmail@email.com",
         password: "Test_Password"
       });
-      const habits = await testUser.habits;
+      const habits = await testUser.habits();
       expect(habits).toHaveLength(2);
-      expect(habits[0]).toHaveProperty("path", "/habits/1");
+      expect(habits[0]).toHaveProperty("path", "/habits");
     });
   });
 
