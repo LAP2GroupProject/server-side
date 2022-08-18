@@ -1,5 +1,6 @@
 const habitController = require("../../controllers/habits");
 const Habit = require("../../models/habits");
+const db=require("../../dbConfig/init")
 
 const mockSend = jest.fn();
 const mockJson = jest.fn();
@@ -133,7 +134,7 @@ describe('gethabitsbyid function', () => {
         jest.spyOn(Habit, 'completeHabit')
             .mockResolvedValue(new Habit(testHabit));
             
-        const mockReq = { body: testHabit }
+        const mockReq = testHabit.id;
         await habitController.getHabitsById(mockReq, mockRes);
         expect(mockStatus).toHaveBeenCalledWith(200);
         expect(mockJson).toHaveBeenCalledWith(new Habit(testHabit));

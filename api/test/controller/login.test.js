@@ -3,7 +3,9 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const login = require("../../controllers/login")
 const extractID = require("../../models/extract")
+
 const createToken = login.createToken
+const User = require("../../models/users")
 
 const extracts=require("../../models/extract")
 
@@ -33,4 +35,35 @@ describe("Login Controller", () => {
         })
     })
 
+    describe("login", () => {
+        test("it returns 401 if unauthorised", async () => {
+            jest.spyOn(User, "getOneByUsername").mockResolvedValue({error: "Error. Unable to authenticate user.", success: "false"})
+            await login.login(null, mockRes)
+            expect(mockStatus).toHaveBeenCalledWith(401);
+            expect(mockJson).toHaveBeenCalledWith({error: "Error. Unable to authenticate user.", success: "false"});
+        })
+
+
+
+    })
+
+   /* describe("register", () => {
+        test("it returns 404 if unauthorised", async () => {
+            jest.spyOn(User, "getOneByUsername").mockResolvedValue({error: "err", success: "false"})
+            await login.register(null, mockRes)
+            expect(mockStatus).toHaveBeenCalledWith(404);
+            expect(mockJson).toHaveBeenCalledWith({error: "err", success: "false"});
+        })
+
+
+    })*/
+    describe("register", () => {
+        test("it returns", async () => {
+            jest.spyOn(User, "register").mockResolvedValue({user: "username"})
+            await login.register(null, mockRes)
+            expect(mockStatus).toHaveBeenCalledWith(404)
+            expect(mockJson).toHaveBeenCalledWith({user: "username"})
+        })
+    })
 })
+

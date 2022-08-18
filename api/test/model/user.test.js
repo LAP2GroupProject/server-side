@@ -88,6 +88,36 @@ describe("users", () => {
     });
   });
 
+  //findhabits
+  describe("findhabits function test", () => {
+    test("it resolves with user on successful db query", async () => {
+      let userData = {
+        id: 2,
+        name: "jo",
+        email: "testEmail@email.com",
+        password: "Test_Password"
+      };
+      jest.spyOn(db, "query").mockResolvedValueOnce({ rows: [userData] });
+      const result = await User.findHabits(userData);
+      expect(result).toBeInstanceOf(User);
+    });
+  });
+
+  //register
+  describe("register function test", () => {
+    test("it resolves with user on successful db query", async () => {
+      let userData = {
+        id: 2,
+        name: "jo",
+        email: "testEmail@email.com",
+        password: "Test_Password"
+      };
+      jest.spyOn(db, "query").mockResolvedValueOnce({ rows: [userData] });
+      const result = await User.register(userData.name,emauserData.email,userData.password);
+      expect(result).toBeInstanceOf(User);
+    });
+  });
+
 
   describe("habit getstreakbyid", () => {
     test("it resolves with user on successful db query", async () => {
@@ -121,6 +151,7 @@ describe("users", () => {
       expect(result).toBeInstanceOf(Habits);
     });
   });
+  
   /*
 
   describe("create", () => {

@@ -82,7 +82,7 @@ describe("Users Controller", () => {
     });
   });
 
-  
+  /*
   describe('show function', () => {
     test('it returns an error habit with a 404 status code', async () => {
         let user = {
@@ -100,7 +100,7 @@ describe("Users Controller", () => {
         expect(mockStatus).toHaveBeenCalledWith(404);
     })
 });
-
+*/
 
 
 

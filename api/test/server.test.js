@@ -14,10 +14,7 @@ describe ("API", () => {
     })
 
 
-    it("Reponds to a GET request at '/' with a 200 status", (done) => {
-        request(api).get("/").expect(200, done);
-    })
-
+   
     
         });
 
