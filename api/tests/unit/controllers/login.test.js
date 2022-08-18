@@ -33,4 +33,13 @@ describe("Login Controller", () => {
 
     })
 
+    describe("register", () => {
+        test("it returns", async () => {
+            jest.spyOn(User, "register").mockResolvedValue({user: "username"})
+            await login.register(null, mockRes)
+            expect(mockStatus).toHaveBeenCalledWith(404)
+            expect(mockJson).toHaveBeenCalledWith({user: "username"})
+        })
+    })
+
 })
