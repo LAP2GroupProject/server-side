@@ -1,19 +1,24 @@
 {
-  "name": "server-side",
+  "name": "api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LAP2GroupProject/server-side.git"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "dev": "nodemon -L index.js",
+    "seedDev": "node dbConfig/seedDev.js"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/LAP2GroupProject/server-side/issues"
-  },
-  "homepage": "https://github.com/LAP2GroupProject/server-side#readme"
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "fs": "^0.0.1-security",
+    "nodemon": "^2.0.19",
+    "pg": "^8.7.3",
+    "pool": "^0.4.1",
+    "bcrypt": "*",
+    "jsonwebtoken": "*"
+  }
 }
