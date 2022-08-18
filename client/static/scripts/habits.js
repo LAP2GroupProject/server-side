@@ -56,8 +56,8 @@ function saveSelected (section, habit) {
 function showOverview (section, habit, frequency) {
     section.style.display = "none"
     overviewSection.style.display = "block"
-    overviewHabit.textContent = `[${habit}]`
-    overviewFrequency.textContent = `[${frequency}]`
+    overviewHabit.textContent = habit
+    overviewFrequency.textContent = frequency
 
     document.getElementById("habitInput").value = habit
     document.getElementById("habitFrequency").value = frequency
