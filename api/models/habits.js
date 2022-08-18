@@ -11,6 +11,7 @@ class Habit {
         this.streak=data.streak;
         this.lastComplete = data.lastComplete;
         this.completeToday = data.completetoday;
+        this.lastCompleteDay = data.lastCompleteDay;
         this.user_id = data.user_id;
     }
 

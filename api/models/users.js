@@ -88,6 +88,21 @@ class User {
         return new Promise (async (resolve, reject) => {
             try {
                 const id = await extractID(data.headers.authorization)
+                // const newDay = getDay()
+                // const newData = await db.query(`SELECT * FROM habits WHERE user_id = $1;`, [ id ])
+                // const res = newData.rows.map(h => new Habit(h));
+                // //console.log(res)
+                // res.forEach(async (h) => {
+                //     if (newDay !== h.lastCompleteDay) {
+                //         //console.log(newDay)
+                //         //console.log(newDay)
+                //         //console.log(h.lastCompleteDay)
+                //         const updated = await db.query(`UPDATE habits SET completetoday='false' WHERE id=$1 RETURNING *;`, [ h.id ])
+                //         const res2 = updated.rows.map(h => new Habit(h));
+                //         //console.log(res2)
+                //     }
+                // })
+                
 
                 const habits = await db.query(`SELECT * FROM habits WHERE user_id = $1 AND completetoday = $2;`, [ id, false ])
                 const response = habits.rows.map(h => new Habit(h));
@@ -107,13 +122,15 @@ class User {
                 const newData = await db.query(`SELECT * FROM habits WHERE user_id = $1 AND habit = $2;`, [ id, data.body.habit])
                 const habit = newData.rows[0]
                 const savedComplete = habit.lastcomplete
+                console.log(habit)
 
                 //check whether it has been 24 hours or more since they last completed the habit
                 if (checkStreak(savedComplete)) {
 
                     // set habit as complete, add a new complete date and add reset streak to 0
                     const newComplete = getDate()
-                    const updatedHabit = await db.query(`UPDATE habits SET completetoday='true', streak=$1, lastComplete=$2 WHERE user_id = $3 AND habit = $4 RETURNING *;`, [ 0, newComplete, id, data.body.habit ])
+                    const newDay = getDay()
+                    const updatedHabit = await db.query(`UPDATE habits SET completetoday='true', lastCompleteDay=$1, streak=$2, lastComplete=$3 WHERE user_id = $4 AND habit = $5 RETURNING *;`, [ newDay, 0, newComplete, id, data.body.habit ])
                     const completedHabit = updatedHabit.rows[0]
                     console.log(completedHabit)
                     resolve(completedHabit)
@@ -122,7 +139,8 @@ class User {
 
                     // set habit as complete, add a new complete date and add 1 to streak
                     const newComplete = getDate()
-                    const updatedHabit = await db.query(`UPDATE habits SET completetoday='true', streak=streak+1, lastComplete=$1 WHERE user_id = $2 AND habit = $3 RETURNING *;`, [ newComplete, id, data.body.habit ])
+                    const newDay = getDay()
+                    const updatedHabit = await db.query(`UPDATE habits SET completetoday='true', streak=streak+1, lastCompleteDay=$1, lastComplete=$2 WHERE user_id = $3 AND habit = $4 RETURNING *;`, [ newDay, newComplete, id, data.body.habit ])
                     const completedHabit = updatedHabit.rows[0]
                     console.log(completedHabit)
                     resolve(completedHabit)
@@ -139,17 +157,27 @@ class User {
 
 function getDate () {
     let date = new Date()
-    date = date / 3600000
+    date = date / 60000
     return Math.round(date)
+}
+
+function getDay () {
+    let date = new Date()
+    let day = date.getDay()
+    console.log(date)
+    console.log(day)
+    return day
 }
 
 function checkStreak (lastComplete) {
     let now = getDate()
-    if (now - lastComplete > 24) {
+    if (now - lastComplete > 1440) {
         return true
     } else {
         return false
     }
 }
+
+
 
 module.exports = User;

@@ -65,6 +65,3 @@ form.addEventListener("submit", completeHabit)
 
 renderHabits()
 
-let date = new Date()
-date = date / 3600000
-console.log(Math.round(date))

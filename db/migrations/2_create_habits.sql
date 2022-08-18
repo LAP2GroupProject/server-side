@@ -7,5 +7,6 @@ CREATE TABLE habits (
     streak int,
     lastComplete int,
     completeToday boolean,
+    lastCompleteDay int,
     user_id int NOT NULL
 );
