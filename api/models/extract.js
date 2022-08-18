@@ -6,9 +6,10 @@ async function extractID (token) {
          if (err) {
              res.status(401).json({ success: false, message: "Invalid token" });
          } else {
-             // const id = decoded.id
-             //console.log(decoded);
+           
              return decoded.id;
+            
+
          }
      });
 }

@@ -23,7 +23,6 @@ async function show (req, res) {
 }
 
 // get user habits
-
 async function showHabits (req, res) {
     try {
         const user = await User.findUncompletedHabits(req);

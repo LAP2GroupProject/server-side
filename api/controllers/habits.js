@@ -28,12 +28,8 @@ async function getHabits (req, res) {
     }
 }
 
-async function completeHabit (req, res) {
-    try {
-        
-    } catch (err) {
-        res.status(500).json({err})
-    }
+ function completeHabit (req, res) {
+   
 }
 
 // get habits by id from habits table
