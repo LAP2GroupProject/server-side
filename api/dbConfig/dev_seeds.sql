@@ -6,4 +6,4 @@ VALUES
 INSERT INTO habits (habit,frequency,streak,lastComplete,completeToday,user_id) 
 VALUES
     ('sleep',2,3,0,FALSE,1),
-    ('exercise', 5,1,0,FALSE,1);
+    ('exercise', 5,1,461328,FALSE,1);

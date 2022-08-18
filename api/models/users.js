@@ -102,17 +102,54 @@ class User {
         return new Promise (async (resolve, reject) => {
             try {
                 const id = await extractID(data.headers.authorization)
-                //console.log(data.body)
-                const updatedHabit = await db.query(`UPDATE habits SET completetoday='true', streak=streak+1 WHERE user_id = $1 AND habit = $2 RETURNING *;`, [ id, data.body.habit ])
-                const completedHabit = updatedHabit.rows[0]
-                console.log(completedHabit)
-                resolve(completedHabit)
+
+                // get lastComplete date from selected habit
+                const newData = await db.query(`SELECT * FROM habits WHERE user_id = $1 AND habit = $2;`, [ id, data.body.habit])
+                const habit = newData.rows[0]
+                const savedComplete = habit.lastcomplete
+
+                //check whether it has been 24 hours or more since they last completed the habit
+                if (checkStreak(savedComplete)) {
+
+                    // set habit as complete, add a new complete date and add reset streak to 0
+                    const newComplete = getDate()
+                    const updatedHabit = await db.query(`UPDATE habits SET completetoday='true', streak=$1, lastComplete=$2 WHERE user_id = $3 AND habit = $4 RETURNING *;`, [ 0, newComplete, id, data.body.habit ])
+                    const completedHabit = updatedHabit.rows[0]
+                    console.log(completedHabit)
+                    resolve(completedHabit)
+
+                } else {
+
+                    // set habit as complete, add a new complete date and add 1 to streak
+                    const newComplete = getDate()
+                    const updatedHabit = await db.query(`UPDATE habits SET completetoday='true', streak=streak+1, lastComplete=$1 WHERE user_id = $2 AND habit = $3 RETURNING *;`, [ newComplete, id, data.body.habit ])
+                    const completedHabit = updatedHabit.rows[0]
+                    console.log(completedHabit)
+                    resolve(completedHabit)
+                    
+                }
+
             } catch (err) {
                 reject(err)
             }
         })
     }
 
+}
+
+function getDate () {
+    let date = new Date()
+    date = date / 3600000
+    return Math.round(date)
+}
+
+function checkStreak (lastComplete) {
+    let now = getDate()
+    if (now - lastComplete > 24) {
+        return true
+    } else {
+        return false
+    }
 }
 
 module.exports = User;
