@@ -40,6 +40,19 @@ form {
   background-color: #effffd;
 }
 
+.success-div {
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+
+.success-icon {
+  color: #42c2ff;
+}
+
+.success-log-in-button {
+  width: 50%;
+}
+
 i {
   width: 25px;
 }
@@ -77,6 +90,10 @@ p {
 
 p a:hover {
   color: #42c2ff;
+}
+
+#habitCheckBox {
+  margin-left: 2%;
 }
 
 @media screen and (max-width: 768px) {

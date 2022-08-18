@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="./static/styles/styles.css" />
     <!-- custom js -->
     <script src="./static/scripts/scripts.js" defer></script>
+    <script src="./static/scripts/login.js" defer></script>
+    <script src="./static/scripts/requests.js"></script>
     <title>Login</title>
   </head>
   <body>
@@ -36,16 +38,16 @@
       <div id="barIconBg">
         <i class="fa-solid fa-bars" id="bars"></i>
       </div>
-      <ul id="mobileNavLinksBg">
+      <ul id="mobileNavLinksBg" style="height: 5rem;">
         <li><a href="./index.html">Login</a></li>
-        <li><a href="./pages/register.html">Register</a></li>
+        <li><a href="./register.html">Register</a></li>
       </ul>
     </nav>
 
     <!-- nav for larger screens -->
     <nav id="navBarLargeBg">
       <a href="./index.html">Login</a>
-      <a href="./pages/register.html">Register</a>
+      <a href="./register.html">Register</a>
     </nav>
 
     <aside id="leftArrow">
@@ -55,30 +57,30 @@
     <main class="container">
       <div class="form-container">
         <h2>Habit Tracker</h2>
-        <form id="login-register">
+        <form id="login-form">
           <div class="username-div">
             <i class="fas fa-sign-in-alt"></i
-            ><input type="text" placeholder="Username" />
+            ><input type="text" placeholder="Username" name="name"/>
           </div>
           <div class="password-div">
             <i class="fa-solid fa-lock"></i
-            ><input type="password" placeholder="Password" />
+            ><input type="password" placeholder="Password" name="password"/>
           </div>
           <button type="submit">Login</button>
         </form>
         <p>
           Don't have an account?
-          <a href="./pages/register.html">Create an account</a>
+          <a href="./register.html">Create an account</a>
         </p>
       </div>
     </main>
 
     <footer id="footerBg">
-      <a href="./pages/user_habit.html"><i class="fa-solid fa-user"></i></a>
-      <a href="./pages/user_habit_completed.html"
+      <a href="./user_habit.html"><i class="fa-solid fa-user"></i></a>
+      <a href="./user_habit_completed.html"
         ><i class="fa-solid fa-calendar-days"></i
       ></a>
-      <a href="./pages/create_habit.html"><i class="fa-solid fa-sun"></i></a>
+      <a href="./create_habit.html"><i class="fa-solid fa-sun"></i></a>
     </footer>
   </body>
 </html>

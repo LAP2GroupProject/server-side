@@ -10,6 +10,7 @@ let overviewFrequency = document.getElementById("overviewFrequency")
 let submitForm = document.getElementById("habitForm")
 let formSubmitButton = document.getElementById("submitHabit")
 
+
 //// HIDE CREATE SECTION AND SHOW HABITS SECTION ////
 let noHabitsSection = document.getElementById("noHabitsBg")
 let createHabitButton = document.getElementById("noHabitBtn")
@@ -61,12 +62,10 @@ function showOverview (section, habit, frequency) {
     document.getElementById("habitInput").value = habit
     document.getElementById("habitFrequency").value = frequency
 
-    submitForm.onsubmit = postHabit
-
-    formSubmitButton.addEventListener("click", () => {
-        submitForm.submit()
-    })
 }
+
+submitForm.addEventListener("submit", postHabit)
+
 
     
 

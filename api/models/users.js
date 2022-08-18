@@ -1,12 +1,15 @@
 const db = require('../dbConfig/init');
-
+const bcrypt = require("bcrypt")
+const jwt = require ("jsonwebtoken");
+const Habit = require("../models/habits")
+const extractID = require("./extract")
 class User {
 
     constructor(data){
         this.id = data.id;
         this.name = data.name;
         this.email = data.email;
-        this.password=data.password;
+        this.password = data.password;
     }
 
 
@@ -24,50 +27,157 @@ class User {
         })
     }
 
-     //create a new user
-     static create(name, email, password) {
+    static findUserById(id) {
         return new Promise (async (resolve, reject) => {
             try {
-                let postData = await db.query(`INSERT INTO users (name,email, password) VALUES ($1, $2, $3) RETURNING *;`, [ name, email, password ]);
-                let addUser = new User(postData.rows[0]);
-                resolve (addUser);
+                const userData = await db.query(`SELECT * FROM users WHERE id = $1;`, [ id ])
+                const user = new User(userData.rows[0]);
+                resolve(user)
             } catch (err) {
-                reject('Error creating user');
+                console.log(err)
+                reject("That user does not exist.")
             }
-        });
+        })
     }
 
-   /* static create(name){
+    static getOneByUsername(username) {
         return new Promise (async (resolve, reject) => {
             try {
-                let userData = await db.query('INSERT INTO users (name) VALUES ($1) RETURNING *;', [ name ]);
-                let user = new User(userData.rows[0]);
-                resolve (user);
-            } catch (err) {
-                reject('user could not be created');
-            };
-        });
-    };*/
-
-
-    static findOrCreateByName(name){
-        return new Promise (async (resolve, reject) => {
-            try {
-                let user;
-                const userData = await db.query('SELECT * FROM users WHERE name = $1;', [ name ]);
-                if(!userData.rows.length) {
-                    user = await User.create(name);
-                } else {
-                    user = new User(userData.rows[0]);
-                };
+                const userData = await db.query(`SELECT * FROM users WHERE name = $1;`, [username]);
+                const user = new User(userData.rows[0]);
                 resolve(user);
             } catch (err) {
-                reject(err);
-            };
-        });
-    };
-   
+                console.log(err);
+                reject('Unable to locate user. Please try again');
+            }
+        })
+    }
+
+    static async register(name, email, password) {
+        return new Promise (async (resolve, reject) => {
+            try {
+                const saltRounds = 10;
+
+                const salt = await bcrypt.genSalt(saltRounds);
+                const hash = await bcrypt.hash(password, salt);
+
+                let result = await db.query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`, [name, email, hash]);
+                const user = new User(result.rows[0])
+                resolve(user);
+            } catch(err){
+                reject(`User could not be created.`)
+            }
+        })
+    }
+
+    static async findHabits(data) {
+        return new Promise (async (resolve, reject) => {
+            try {
+                const id = await extractID(data.headers.authorization)
+
+                const habits = await db.query(`SELECT * FROM habits WHERE user_id = $1;`, [ id ])
+                const response = habits.rows.map(h => new Habit(h));
+                resolve(response)
+            } catch (err) {
+                reject(err)
+            }
+        })
+    }
+
+    static async findUncompletedHabits(data) {
+        return new Promise (async (resolve, reject) => {
+            try {
+                const id = await extractID(data.headers.authorization)
+                // const newDay = getDay()
+                // const newData = await db.query(`SELECT * FROM habits WHERE user_id = $1;`, [ id ])
+                // const res = newData.rows.map(h => new Habit(h));
+                // //console.log(res)
+                // res.forEach(async (h) => {
+                //     if (newDay !== h.lastCompleteDay) {
+                //         //console.log(newDay)
+                //         //console.log(newDay)
+                //         //console.log(h.lastCompleteDay)
+                //         const updated = await db.query(`UPDATE habits SET completetoday='false' WHERE id=$1 RETURNING *;`, [ h.id ])
+                //         const res2 = updated.rows.map(h => new Habit(h));
+                //         //console.log(res2)
+                //     }
+                // })
+                
+
+                const habits = await db.query(`SELECT * FROM habits WHERE user_id = $1 AND completetoday = $2;`, [ id, false ])
+                const response = habits.rows.map(h => new Habit(h));
+                resolve(response)
+            } catch (err) {
+                reject(err)
+            }
+        })
+    }
+
+    static async completeHabit(data) {
+        return new Promise (async (resolve, reject) => {
+            try {
+                const id = await extractID(data.headers.authorization)
+
+                // get lastComplete date from selected habit
+                const newData = await db.query(`SELECT * FROM habits WHERE user_id = $1 AND habit = $2;`, [ id, data.body.habit])
+                const habit = newData.rows[0]
+                const savedComplete = habit.lastcomplete
+                console.log(habit)
+
+                //check whether it has been 24 hours or more since they last completed the habit
+                if (checkStreak(savedComplete)) {
+
+                    // set habit as complete, add a new complete date and add reset streak to 0
+                    const newComplete = getDate()
+                    const newDay = getDay()
+                    const updatedHabit = await db.query(`UPDATE habits SET completetoday='true', lastCompleteDay=$1, streak=$2, lastComplete=$3 WHERE user_id = $4 AND habit = $5 RETURNING *;`, [ newDay, 0, newComplete, id, data.body.habit ])
+                    const completedHabit = updatedHabit.rows[0]
+                    console.log(completedHabit)
+                    resolve(completedHabit)
+
+                } else {
+
+                    // set habit as complete, add a new complete date and add 1 to streak
+                    const newComplete = getDate()
+                    const newDay = getDay()
+                    const updatedHabit = await db.query(`UPDATE habits SET completetoday='true', streak=streak+1, lastCompleteDay=$1, lastComplete=$2 WHERE user_id = $3 AND habit = $4 RETURNING *;`, [ newDay, newComplete, id, data.body.habit ])
+                    const completedHabit = updatedHabit.rows[0]
+                    console.log(completedHabit)
+                    resolve(completedHabit)
+                    
+                }
+
+            } catch (err) {
+                reject(err)
+            }
+        })
+    }
+
+}
+
+function getDate () {
+    let date = new Date()
+    date = date / 60000
+    return Math.round(date)
+}
+
+function getDay () {
+    let date = new Date()
+    let day = date.getDay()
+    console.log(date)
+    console.log(day)
+    return day
+}
+
+function checkStreak (lastComplete) {
+    let now = getDate()
+    if (now - lastComplete > 1440) {
+        return true
+    } else {
+        return false
+    }
 }
 
 
-module.exports=User;
+
+module.exports = User;
