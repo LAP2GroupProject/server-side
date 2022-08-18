@@ -22,9 +22,6 @@ body {
   text-align: center;
   cursor: default;
   background-color: #fff;
-  /* for footer */
-  position: relative;
-  min-height: 100vh;
 }
 
 a {
@@ -66,7 +63,7 @@ li {
   text-align: right;
   background-color: #effffd;
   display: none;
-  height: 5rem;
+  height: 6rem;
 }
 
 #mobileNavLinksBg li {
@@ -159,12 +156,37 @@ li {
   }
 }
 
-/******************************************************  no habits section */
+/****************************************************** messages */
+#registerMessage {
+  position: absolute;
+  top: 4rem;
+  left: 0rem;
+  width: 100%;
+}
+
+#registerMessage p {
+  font-size: 1.5rem;
+}
+
+#flashSubmitMessage {
+  position: absolute;
+    top: 11rem;
+    left: 1rem;
+}
+
+#flashSubmitMessage p{
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #42c2ff;
+}
+
+/****************************************************** no habits section */
 #noHabitsBg {
   display: grid;
   grid-template-columns: auto;
   grid-gap: 1rem;
   justify-items: center;
+  padding-top: 18rem;
 }
 
 #noHabitBtn {
@@ -194,7 +216,7 @@ li {
 
 /******************************************************  select habits section */
 #habitsBg {
-  margin: 0 auto;
+  margin: 13rem auto;
   width: 18rem;
   height: 16rem;
   border: 1px solid lightgray;
@@ -243,13 +265,26 @@ li {
 
 /****************************************************** select frequency section */
 #habitSleepContainer, #habitWaterContainer, #habitExerciseContainer {
-  margin: 0 auto;
   width: 18rem;
-  height: 21rem;
   border: 1px solid lightgray;
   border-radius: 2%;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
   padding: 1rem;
+}
+
+#habitSleepContainer {
+  margin: 9rem auto;
+  height: 24rem;
+}
+
+#habitWaterContainer {
+  margin: 8rem auto;
+  height: 25rem;
+}
+
+#habitExerciseContainer {
+  margin: 9rem auto;
+  height: 24rem;
 }
 
 #habitSleepContainer h1, #habitWaterContainer h1, #habitExerciseContainer h1 {
@@ -271,7 +306,7 @@ h2 {
   margin-bottom: 2rem;
 }
 
-#habitSleepContainer span, #habitWaterContainer span, #habitExerciseContainer span {
+#habitSleepContainer span, #habitWaterContainer span, #habitExerciseContainer span, #mobileNavLinksBg span { /* check if all needed*/
   color: #42c2ff;
 }
 
@@ -327,6 +362,7 @@ h2 {
   grid-template-columns: auto;
   grid-gap: 1rem;
   justify-items: center;
+  margin: 16rem auto;
 }
 
 #displayHabitAndFrequencyBg a {
@@ -346,21 +382,35 @@ h2 {
   background-color: #85f4ff;
 }
 
-@media (min-width: 992px) {
-  #displayHabitAndFrequencyBg h1 {
-    font-size: 2.5rem;
-  }
-
-  #displayHabitAndFrequencyBg h2 {
-    font-size: 2rem;
-  }
-
-  #displayHabitAndFrequencyBg a {
-    width: 7rem;
-    font-size: 1.5rem;
-  }
+#displayHabitAndFrequencyBg #submitHabit {
+  background-color: #42c2ff;
+  padding: 1rem;
+  font-weight: 900;
+  cursor: pointer;
 }
 
+#displayHabitAndFrequencyBg #submitHabit:hover {
+  background-color: #85f4ff;
+}
+
+@media (min-width: 992px) {
+    #displayHabitAndFrequencyBg h1 {
+      font-size: 2.5rem;
+    }
+
+    #displayHabitAndFrequencyBg h2 {
+      font-size: 2rem;
+    }
+
+    #displayHabitAndFrequencyBg a {
+      width: 7rem;
+      font-size: 1.5rem;
+    }
+
+    #displayHabitAndFrequencyBg #submitHabit {
+      font-size: 1.5rem;
+  }
+}
 /****************************************************** user habit page */
 #userHabitPg h1 {
   margin-bottom: 2rem;

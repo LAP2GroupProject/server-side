@@ -28,4 +28,24 @@ async function getHabits (req, res) {
     }
 }
 
-module.exports={habitIndex, create, getHabits}
+async function completeHabit (req, res) {
+    try {
+        
+    } catch (err) {
+        res.status(500).json({err})
+    }
+}
+
+// get habits by id from habits table
+async function getHabitsById(req, res) {
+    try {
+        const habitsById = await Habit.habitStreaksById(parseInt(req.params.id))
+        console.log("habitsById ==> ", habitsById);
+        res.status(200).json(habitsById)
+    } catch (err) {
+        console.log("HERE!!");
+        res.status(404).json({err})
+    }
+}
+
+module.exports={habitIndex, create, getHabits, completeHabit, getHabitsById}

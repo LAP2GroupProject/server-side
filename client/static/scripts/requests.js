@@ -37,6 +37,7 @@ async function loginRequest (e) {
 }
 
 async function registerRequest (e) {
+    console.log("i am here")
     e.preventDefault()
     try {
         const options = {
@@ -44,11 +45,16 @@ async function registerRequest (e) {
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(Object.fromEntries(new FormData(e.target)))
         }
+
+        await fetch('http://localhost:3000/register', options)
+        registerMessage()
+
         const response = await fetch('http://localhost:3000/register', options)
         if (response.status === 201) {
             document.getElementById("register-container").style.display = "none"
             document.getElementById("thank-you-message").style.display = "block"
         }
+
     } catch (err) {
         alert(err)
     }
@@ -68,4 +74,13 @@ async function completeHabit (e) {
     } catch (err) {
         alert(err)
     }
+}
+
+// register message for users
+function registerMessage() {
+    const registerMessage = document.getElementById("registerMessage");
+    pElem = document.createElement("p");
+    pElem.setAttribute("id", "registerMessage");
+    pElem.textContent = "You have registered!";
+    registerMessage.appendChild(pElem);
 }
