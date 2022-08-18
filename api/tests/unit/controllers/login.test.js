@@ -22,4 +22,15 @@ describe("Login Controller", () => {
         })
     })
 
+    describe("login", () => {
+        test("it returns 401 if unauthorised", async () => {
+            jest.spyOn(User, "getOneByUsername").mockResolvedValue({error: "Error. Unable to authenticate user.", success: "false"})
+            await login.login(null, mockRes)
+            expect(mockStatus).toHaveBeenCalledWith(401);
+            expect(mockJson).toHaveBeenCalledWith({error: "Error. Unable to authenticate user.", success: "false"});
+        })
+
+
+    })
+
 })
