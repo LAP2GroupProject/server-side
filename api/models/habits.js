@@ -70,6 +70,7 @@ class Habit {
                 console.log("habitStreaks ==> ", habitStreaks);
                 const userHabits = habitStreaks.rows.map(h => new Habit(h));
                 resolve(userHabits);
+               
             } catch (err) {
                 reject("Error retrieving user's habits");
             }

@@ -4,21 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
     "dev": "nodemon -L index.js",
-    "seedDev": "node dbConfig/seedDev.js"
+    "seedDev": "node dbConfig/seedDev.js",
+    "unitTests": "jest --watchAll --verbose",
+    "coverage": "jest --watchAll --coverage  --verbose"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "*",
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "fs": "^0.0.1-security",
+    "jsonwebtoken": "*",
     "nodemon": "^2.0.19",
     "pg": "^8.7.3",
     "pool": "^0.4.1",
-    "bcrypt": "*",
-    "jsonwebtoken": "*"
+    "supertest": "^6.2.4",
+    "jest": "^28.1.3"
+  },
+  "devDependencies": {
+    "jest": "^28.1.3"
   }
 }
