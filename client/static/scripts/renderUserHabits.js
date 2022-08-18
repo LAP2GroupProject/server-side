@@ -16,7 +16,7 @@ async function habitStreaksRequest() {
         });
 
     } catch (err) {
-        alert(err)
+        window.location.assign("/")
     }
 }
 habitStreaksRequest();
