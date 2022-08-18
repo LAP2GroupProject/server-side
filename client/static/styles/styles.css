@@ -169,15 +169,19 @@ li {
 }
 
 #flashSubmitMessage {
-  position: absolute;
-    top: 11rem;
-    left: 1rem;
+  position: relative;
+  top: -2rem;
+  left: 0rem;
 }
 
 #flashSubmitMessage p{
   font-size: 1.5rem;
   font-weight: 900;
   color: #42c2ff;
+}
+
+@media (min-width: 900px) {
+  #flashSubmitMessage p{font-size: 2rem;}
 }
 
 /****************************************************** no habits section */
