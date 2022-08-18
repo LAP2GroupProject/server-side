@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/LAP2GroupProject/server-side#readme",
   "dependencies": {
-    "coverage": "^0.4.1"
+    "coverage": "^0.4.1",
+    "supertest": "^6.2.4"
   }
 }
