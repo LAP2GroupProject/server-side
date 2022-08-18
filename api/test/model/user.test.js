@@ -1,7 +1,8 @@
 const User= require("../../models/users")
 const Habits=require("../../models/habits")
 const db=require("../../dbConfig/init")
-
+const login = require("../../controllers/login")
+token=login.create
 const pg = require("pg");
 jest.mock("pg");
 
@@ -98,8 +99,9 @@ describe("users", () => {
         password: "Test_Password"
       };
       jest.spyOn(db, "query").mockResolvedValueOnce({ rows: [userData] });
-      const result = await User.findHabits(userData);
+      const result = await User.findHabits(token);
       expect(result).toBeInstanceOf(User);
+      expect(result).toHaveLength(1);
     });
   });
 
@@ -113,7 +115,7 @@ describe("users", () => {
         password: "Test_Password"
       };
       jest.spyOn(db, "query").mockResolvedValueOnce({ rows: [userData] });
-      const result = await User.register(userData.name,emauserData.email,userData.password);
+      const result = await User.register(userData);
       expect(result).toBeInstanceOf(User);
     });
   });
@@ -151,21 +153,8 @@ describe("users", () => {
       expect(result).toBeInstanceOf(Habits);
     });
   });
-  
-  /*
 
-  describe("create", () => {
-    test("it resolves with user on successful db query", async () => {
-      let userData = {
-        id: 1,
-        name: "Test User",
-        email: "testEmail@email.com",
-        password: "Test_Password"
-      };
-      jest.spyOn(db, "query").mockResolvedValueOnce({ rows: [userData] });
-      const result = await User.create("New User");
-      expect(result).toBeInstanceOf(User);
-    });
-  });*/
+  
+   
 
 });

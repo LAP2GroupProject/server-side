@@ -110,7 +110,7 @@ describe("Habit Controller", () => {
             
         const mockReq = { body: testHabit }
         await habitController.getHabits(mockReq, mockRes);
-        expect(mockStatus).toHaveBeenCalledWith(200);
+        expect(mockStatus).toBe(200);
         expect(mockJson).toHaveBeenCalledWith(new Habit(testHabit));
     })
   });
