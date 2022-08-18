@@ -4,7 +4,7 @@ const usersController = require('../controllers/users');
 const verifyToken = require("../middleware/verifyToken");
 
 const usersRoutes = Router()
-usersRoutes.use(verifyToken)
+// usersRoutes.use(verifyToken)
 
 usersRoutes.get('/', usersController.index); //gets all users
 usersRoutes.get('/habits', usersController.showHabits); //gets all user's habits
