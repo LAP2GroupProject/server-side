@@ -2,6 +2,7 @@ const db = require('../dbConfig/init');
 const bcrypt = require("bcrypt")
 const jwt = require ("jsonwebtoken");
 const Habit = require("../models/habits")
+const extractID = require("./extract")
 class User {
 
     constructor(data){
@@ -82,19 +83,73 @@ class User {
             }
         })
     }
+
+    static async findUncompletedHabits(data) {
+        return new Promise (async (resolve, reject) => {
+            try {
+                const id = await extractID(data.headers.authorization)
+
+                const habits = await db.query(`SELECT * FROM habits WHERE user_id = $1 AND completetoday = $2;`, [ id, false ])
+                const response = habits.rows.map(h => new Habit(h));
+                resolve(response)
+            } catch (err) {
+                reject(err)
+            }
+        })
+    }
+
+    static async completeHabit(data) {
+        return new Promise (async (resolve, reject) => {
+            try {
+                const id = await extractID(data.headers.authorization)
+
+                // get lastComplete date from selected habit
+                const newData = await db.query(`SELECT * FROM habits WHERE user_id = $1 AND habit = $2;`, [ id, data.body.habit])
+                const habit = newData.rows[0]
+                const savedComplete = habit.lastcomplete
+
+                //check whether it has been 24 hours or more since they last completed the habit
+                if (checkStreak(savedComplete)) {
+
+                    // set habit as complete, add a new complete date and add reset streak to 0
+                    const newComplete = getDate()
+                    const updatedHabit = await db.query(`UPDATE habits SET completetoday='true', streak=$1, lastComplete=$2 WHERE user_id = $3 AND habit = $4 RETURNING *;`, [ 0, newComplete, id, data.body.habit ])
+                    const completedHabit = updatedHabit.rows[0]
+                    console.log(completedHabit)
+                    resolve(completedHabit)
+
+                } else {
+
+                    // set habit as complete, add a new complete date and add 1 to streak
+                    const newComplete = getDate()
+                    const updatedHabit = await db.query(`UPDATE habits SET completetoday='true', streak=streak+1, lastComplete=$1 WHERE user_id = $2 AND habit = $3 RETURNING *;`, [ newComplete, id, data.body.habit ])
+                    const completedHabit = updatedHabit.rows[0]
+                    console.log(completedHabit)
+                    resolve(completedHabit)
+                    
+                }
+
+            } catch (err) {
+                reject(err)
+            }
+        })
+    }
+
 }
 
- async function extractID (token) {
-    const rawToken = token.split(' ')[1];
-     return jwt.verify(rawToken, process.env["SECRET_PASSWORD"], (err, decoded) => {
-         if (err) {
-             res.status(401).json({ success: false, message: "Invalid token" });
-         } else {
-             // const id = decoded.id
-             console.log(decoded);
-             return decoded.id;
-         }
-     });
+function getDate () {
+    let date = new Date()
+    date = date / 3600000
+    return Math.round(date)
+}
+
+function checkStreak (lastComplete) {
+    let now = getDate()
+    if (now - lastComplete > 24) {
+        return true
+    } else {
+        return false
+    }
 }
 
 module.exports = User;

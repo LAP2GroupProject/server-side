@@ -29,6 +29,7 @@
     <!-- custom js -->
     <script src="./static/scripts/scripts.js" defer></script>
     <script src="./static/scripts/renderCompleted.js" defer></script>
+    <script src="./static/scripts/requests.js"></script>
     <title>Your Completed Habits</title>
   </head>
   <body>
@@ -55,10 +56,15 @@
       <i class="fa-solid fa-circle-left" onclick="history.back()"></i>
     </aside>
 
+    <div class="container" id="allHabitsComplete" style="display: none;">
+      <h1>Congratulations!</h1>
+      <h2>You have completed all your habits for today!</h2>
+    </div>
+
     <main id="userHabitCompletedPg" class="container">
       <div class="form-container">
-        <h2>Tracked habits</h2>
-        <h3>Please select your habit and mark as completed!</h3>
+        <h1>Tracked habits</h1>
+        <h2>Please select your habit and mark as completed!</h2>
         <form id="register-form">
     
         </form>

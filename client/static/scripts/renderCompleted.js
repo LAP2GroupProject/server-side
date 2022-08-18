@@ -1,8 +1,11 @@
 const form = document.getElementById("register-form")
+const allHabitsComplete = document.getElementById("allHabitsComplete")
+const uncompletedHabits = document.getElementById("userHabitCompletedPg")
 
 async function renderHabits () {
 
-    const options = {
+    try {
+        const options = {
         method: 'GET',
         headers: { "Content-type": "application/json",
                     'authorization': localStorage.getItem("token") 
@@ -11,12 +14,22 @@ async function renderHabits () {
 
     const response = await fetch("http://localhost:3000/users/habits", options)
     res = await response.json()
-    console.log(res)
+    console.log(res.length)
 
-    res.forEach(res => {
-        createElement(res)
+    if (res.length === 0) {
+        uncompletedHabits.style.display = "none"
+        allHabitsComplete.style.display = "block"
+    } else {
+        res.forEach(res => {
+            createElement(res)
     });
+    }
+
     addCompleteButton()
+    } catch (error) {
+        window.location.assign("/index.html")
+    }
+
 }
 
 function createElement(res) {
@@ -34,7 +47,7 @@ function createElement(res) {
         elem.appendChild(habitLabel)
         const habitElem = document.createElement("input")
         habitElem.type = "checkbox"
-        habitElem.name = res.habit
+        habitElem.name = "habit"
         habitElem.value = res.habit
         habitElem.id = "habitCheckBox"
         elem.appendChild(habitElem)
@@ -48,6 +61,10 @@ function addCompleteButton() {
     form.appendChild(button)
 }
 
-//form.addEventListener("submit", completeHabit)
+form.addEventListener("submit", completeHabit)
 
 renderHabits()
+
+let date = new Date()
+date = date / 3600000
+console.log(Math.round(date))

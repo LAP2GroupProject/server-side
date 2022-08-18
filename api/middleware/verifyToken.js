@@ -8,7 +8,7 @@ function verifyToken(req, res, next) {
         const token = header.split(' ')[1];
 
         jwt.verify(token, process.env["SECRET_PASSWORD"], (err, decoded) => {
-            console.log(decoded)
+            //console.log(decoded)
             if (err) {
                 res.status(401).json({success: false, message: "Invalid token"});
             } else {
