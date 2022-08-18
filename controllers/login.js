@@ -8,7 +8,7 @@ const User = require("../models/users");
 async function createToken(userData) {
     const token = await jwt.sign({
         id: userData["id"]
-    }, process.env["SECRET_PASSWORD"], {expiresIn: 60 * 60})
+    }, "" + process.env.SECRET_PASSWORD, {expiresIn: 60 * 60})
 
     return token;
 }
