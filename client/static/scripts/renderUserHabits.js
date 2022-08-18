@@ -1,13 +1,19 @@
 // fetching habit & streak
 async function habitStreaksRequest() {
     try {
-        const response = await fetch('http://localhost:3000/habits')
+        const options = {
+            method: 'GET',
+            headers: { "Content-type": "application/json",
+                    'authorization': localStorage.getItem("token") 
+            }
+        }
+        const response = await fetch('http://localhost:3000/habits', options)
         const data = await response.json();
 
-        data.map(singleObj => {
-            console.log(singleObj);
-            showHabits(singleObj)
-        })
+        data.forEach(habit => {
+            console.log(habit)
+            showHabits(habit)
+        });
 
     } catch (err) {
         alert(err)
@@ -26,7 +32,7 @@ function showHabits(data) {
     cell1.textContent = data.habit;
     cell2.textContent = data.streak;
     
-    if (data.streak === 0) {
+    if (!data.completeToday) {
         cell3.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
     } else {
         cell3.innerHTML = `<i class="fa-solid fa-check"></i>`;       
