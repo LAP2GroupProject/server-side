@@ -18,19 +18,7 @@ describe ("API", () => {
         request(api).get("/").expect(200, done);
     })
 
-
-
-
-
-   
-      
-  
-
-
     
-	
-
-
         });
 
         

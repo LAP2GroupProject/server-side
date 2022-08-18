@@ -116,7 +116,7 @@ describe("users", () => {
         lastCompleteDay :15,
         user_id: 1
       };
-      jest.spyOn(db, "query").mockResolvedValueOnce({ rows: [userData] });
+      jest.spyOn(db, "query").mockResolvedValueOnce({ rows: [userData.id] });
       const result = await Habits.allByUserId(1);
       expect(result).toBeInstanceOf(Habits);
     });

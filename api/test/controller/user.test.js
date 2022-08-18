@@ -7,11 +7,15 @@ describe("Users Controller", () => {
 
   afterAll(() => jest.resetAllMocks());
 
-  describe("index", () => {
+  
+
+ 
+
+  describe("controller-user-index", () => {
     test("it resolves with users on successful db query", async () => {
       jest.spyOn(db, "query").mockResolvedValueOnce({ rows: [{}, {}, {}] });
-      const all = await usersController.index
-      expect(all).toBe(200);
+      const all = await usersController.index;
+      expect(all).toHaveLength(2);
     });
   });
 /*
@@ -35,7 +39,7 @@ describe("Users Controller", () => {
 
   describe("show", () => {
     test("it returns a user and their habits with a 200 status code", async () => {
-      jest.spyOn(User.findUserById, "findById").mockResolvedValue(
+      jest.spyOn(usersController, "findByUserId").mockResolvedValue(
         new User({
           id: 1,
           name: "Test User",
