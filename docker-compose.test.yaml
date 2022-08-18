@@ -8,6 +8,7 @@ services:
       - PGDATABASE=library_test
       - PGPORT=5432
       - NODE_ENV=test
+      - SECRET_PASSWORD=${PASS}
     depends_on:
       - db
     tty: true
