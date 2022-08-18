@@ -84,26 +84,26 @@ class User {
         })
     }
 
+    static async updateHabits(data) {
+        return new Promise (async (resolve, reject) => {
+            try {
+                const id = await extractID(data.headers.authorization)
+                const newDay = getDay() //18
+                const response = await db.query(`UPDATE habits SET completetoday='false' WHERE user_id=$1 AND lastCompleteDay!=$2 RETURNING *;`, [ id, newDay ])
+                const res = response.rows.map(h => new Habit(h));
+                console.log(res)
+                resolve(res)
+            } catch (err) {
+                reject(err)
+            }
+        })
+    }
+
     static async findUncompletedHabits(data) {
         return new Promise (async (resolve, reject) => {
             try {
                 const id = await extractID(data.headers.authorization)
-                // const newDay = getDay()
-                // const newData = await db.query(`SELECT * FROM habits WHERE user_id = $1;`, [ id ])
-                // const res = newData.rows.map(h => new Habit(h));
-                // //console.log(res)
-                // res.forEach(async (h) => {
-                //     if (newDay !== h.lastCompleteDay) {
-                //         //console.log(newDay)
-                //         //console.log(newDay)
-                //         //console.log(h.lastCompleteDay)
-                //         const updated = await db.query(`UPDATE habits SET completetoday='false' WHERE id=$1 RETURNING *;`, [ h.id ])
-                //         const res2 = updated.rows.map(h => new Habit(h));
-                //         //console.log(res2)
-                //     }
-                // })
-                
-
+            
                 const habits = await db.query(`SELECT * FROM habits WHERE user_id = $1 AND completetoday = $2;`, [ id, false ])
                 const response = habits.rows.map(h => new Habit(h));
                 resolve(response)
@@ -163,10 +163,10 @@ function getDate () {
 
 function getDay () {
     let date = new Date()
-    let day = date.getDay()
-    console.log(date)
-    console.log(day)
-    return day
+    date.getDay()
+    //console.log(date)
+    //console.log(day)
+    return date.getDate()
 }
 
 function checkStreak (lastComplete) {
